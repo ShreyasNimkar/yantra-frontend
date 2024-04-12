@@ -97,28 +97,12 @@ const Login = () => {
   return (
     <>
       <Head>
-        <title>Login | Interact</title>
-        <meta
-          name="description"
-          content="Log into Interact! Interact is a groundbreaking web platform designed for college-going students, freelancers, professionals, and creatives."
-        />
+        <title>Login | Website </title>
       </Head>
       <div className="h-full flex">
         <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex flex-col justify-between items-center">
           <div className="w-full flex justify-between items-center">
             <ReactSVG src="/onboarding_logo.svg" />
-            <Link
-              href={`/organisation/login`}
-              className="w-12 hover:w-36 h-12 group overflow-clip relative rounded-full border-[1px] border-primary_black hover:shadow-xl transition-ease-300"
-            >
-              <div className="absolute top-32 group-hover:top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 font-medium transition-ease-300">
-                Organisation?
-              </div>
-              {/* <Buildings
-                className="absolute top-1/2 group-hover:-top-8 right-1/2 translate-x-1/2 -translate-y-1/2 transition-ease-300"
-                size={24}
-              /> */}
-            </Link>
           </div>
           <form
             onSubmit={handleSubmit}
@@ -210,7 +194,7 @@ const Login = () => {
           </form>
           <div className="w-3/4 max-lg:w-full text-[12px] text-center text-gray-400">
             By clicking “Continue” above, you acknowledge that you have read and
-            understood, and agree to Interact&apos;s{" "}
+            understood, and agree to website&apos;s{" "}
             <span className="underline underline-offset-2 font-medium cursor-pointer">
               Term & Conditions
             </span>{" "}

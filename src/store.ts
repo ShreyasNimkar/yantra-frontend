@@ -1,4 +1,4 @@
-// import feedReducer from '@/slices/feedSlice';
+import feedReducer from "@/slices/feedSlice";
 // import messagingReducer from '@/slices/messagingSlice';
 import userReducer from "@/slices/userSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
@@ -55,6 +55,7 @@ const orgPersistConfig = {
 
 const rootReducer = combineReducers({
   user: userReducer,
+  feed: persistReducer(feedPersistConfig, feedReducer),
   // messaging: messagingReducer,
   config: persistReducer(configPersistConfig, configReducer),
 });

@@ -2,6 +2,7 @@ import React from "react";
 import ProfileDropdown from "./profile_dropdown";
 import { useState } from "react";
 import { IoIosNotifications } from "react-icons/io";
+import Link from "next/link";
 const index = () => {
   const [clickedOnProfile, setClickedOnProfile] = useState(false);
   const [clickedOnFeedback, setClickedOnFeedback] = useState(false);
@@ -11,9 +12,15 @@ const index = () => {
       <div className="w-full h-[7.5vh] bg-slate-500 flex flex-row ">
         <div className="w-[20%]">asd</div>
         <div className="w-[60%] flex flex-row h-full justify-center gap-10 items-center">
-          <div>resources</div>
-          <div>events</div>
-          <div>feed</div>
+          <Link className="cursor-pointer" href={"/home"}>
+            Feed
+          </Link>
+          <Link className="cursor-pointer" href={"/events"}>
+            Events
+          </Link>
+          <Link className="cursor-pointer" href={"/resources"}>
+            Resources
+          </Link>
         </div>
         <div className="w-[20%] flex justify-center gap-3 items-center">
           <div>
@@ -24,7 +31,7 @@ const index = () => {
             />
           </div>
           <div
-            className="rounded-3xl p-5 bg-red-400"
+            className="cursor-pointer rounded-3xl p-5 bg-red-400"
             onClick={() => {
               setClickedOnProfile(true);
             }}

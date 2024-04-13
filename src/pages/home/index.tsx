@@ -91,28 +91,15 @@ const Home = () => {
           <div className="h-full flex items-center text-6xl font-semibold">
             Feed
           </div>
-          {user.isModerator && (
-            <div
-              onClick={() => {
-                setClickedOnNewPost(true);
-              }}
-              className=" w-[50%] h-full flex items-center justify-end text-center"
-            >
-              <p className="cursor-pointer">
-                To upload a post, click here &nbsp;
-              </p>
-              <CiCirclePlus size={25} className="cursor-pointer" />
-            </div>
-          )}
 
           <div
             onClick={() => {
-              setClickedOnNewPoll(true);
+              setClickedOnNewPost(true);
             }}
-            className=" w-[50%] h-full flex items-center justify-end text-center"
+            className="flex items-center justify-end text-center"
           >
             <p className="cursor-pointer">
-              To upload a poll, click here &nbsp;
+              To upload a post, click here &nbsp;
             </p>
             <CiCirclePlus size={25} className="cursor-pointer" />
           </div>
@@ -120,9 +107,23 @@ const Home = () => {
           {user.isModerator && (
             <div
               onClick={() => {
+                setClickedOnNewPoll(true);
+              }}
+              className="flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">
+                To upload a poll, click here &nbsp;
+              </p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
+          )}
+
+          {user.isModerator && (
+            <div
+              onClick={() => {
                 setClickedOnNewAnnouncement(true);
               }}
-              className=" w-[50%] h-full flex items-center justify-end text-center"
+              className="flex items-center justify-end text-center"
             >
               <p className="cursor-pointer">
                 To upload an announcement, click here &nbsp;

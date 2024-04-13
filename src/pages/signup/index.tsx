@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { ReactSVG } from "react-svg";
-// import Eye from "@phosphor-icons/react/dist/icons/Eye";
-// import EyeClosed from "@phosphor-icons/react/dist/icons/EyeClosed";
+import Eye from "@phosphor-icons/react/dist/icons/Eye";
+import EyeClosed from "@phosphor-icons/react/dist/icons/EyeClosed";
 import { useState } from "react";
 import Toaster from "@/utils/toaster";
 import Cookies from "js-cookie";
@@ -19,7 +19,7 @@ import { User } from "@/types";
 import isEmail from "validator/lib/isEmail";
 import isStrongPassword from "validator/lib/isStrongPassword";
 import { SERVER_ERROR } from "@/config/errors";
-// import Info from "@phosphor-icons/react/dist/icons/Info";
+import Info from "@phosphor-icons/react/dist/icons/Info";
 import generateRandomProfilePicture from "@/utils/generate_profile_picture";
 import StrongPassInfo from "@/components/common/strong_pass_info";
 import RegistrationButton from "@/components/buttons/registration_btn";
@@ -31,6 +31,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   // const [earlyAccessToken, setEarlyAccessToken] = useState('');
+  const [isModerator, setIsModerator] = useState(false);
   const [mutex, setMutex] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -88,32 +89,18 @@ const SignUp = () => {
       return;
     }
 
-    // if (earlyAccessToken == '') {
-    //   Toaster.error('Enter your Early Access Token');
-    //   return;
-    // }
-
     if (mutex) return;
     setMutex(true);
 
-    // const formData = new FormData();
-    // formData.append("email", email);
-    // formData.append("name", name);
-    // formData.append("username", username.trim().toLowerCase());
-    // formData.append("password", password);
-    // formData.append("confirmPassword", confirmPassword);
-    // formData.append("ismoderator", "true");
-    // formData.append("isdoctor", "true");
-    // formData.append("isstudent", "false");
     const formData = {
       email: email,
       name,
       username: username.trim().toLowerCase(),
       password,
       confirmPassword,
-      isModerator: true,
-      isDoctor: true,
-      isStudent: true,
+      isModerator,
+      isDoctor: false,
+      isStudent: false,
     };
     const toaster = Toaster.startLoad("Creating your Account...");
 
@@ -135,20 +122,18 @@ const SignUp = () => {
             expires: Number(process.env.NEXT_PUBLIC_COOKIE_EXPIRATION_TIME),
           });
           dispatch(setUser({ ...user, isVerified: false }));
-          //Early Access - dispatch(setUser({ ...user, isVerified: true }));
           dispatch(setConfig());
           dispatch(setUnreadNotifications(1)); //welcome notification
-          // dispatch(setOnboarding(true));
           dispatch(
             setPasswordSetupStatus(res.data.isPasswordSetupComplete || false)
           );
+
+          sessionStorage.setItem("onboarding-redirect", "signup-callback");
+          window.location.assign(
+            isModerator ? "/mod_onboarding" : "/user_onboarding"
+          );
+
           // socketService.connect(user.id);
-
-          sessionStorage.setItem("verification-redirect", "signup-callback");
-          window.location.assign("/verification");
-
-          //Early Access -  sessionStorage.setItem('onboarding-redirect', 'signup');
-          //Early Access -  router.replace('/onboarding');
         }
         setMutex(false);
       })
@@ -166,7 +151,6 @@ const SignUp = () => {
     const token = new URLSearchParams(window.location.search).get("token");
     const email = new URLSearchParams(window.location.search).get("email");
 
-    // if (token && token != '') setEarlyAccessToken(token);
     if (email && email != "") setEmail(email);
   }, [window.location.search]);
 
@@ -315,6 +299,35 @@ const SignUp = () => {
                         eyecloseddiv
                       </div>
                     )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex justify-between mt-8">
+                <div className="font-medium">Are you a Moderator?</div>
+                <div className="w-fit relative">
+                  <div className="flex items-center justify-start gap-2">
+                    No{" "}
+                    <label className="flex w-fit cursor-pointer select-none items-center text-sm gap-2">
+                      <div className="relative">
+                        <input
+                          type="checkbox"
+                          checked={isModerator}
+                          onChange={() => setIsModerator((prev) => !prev)}
+                          className="sr-only"
+                        />
+                        <div
+                          className={`box block h-6 w-10 rounded-full ${
+                            isModerator ? "bg-blue-300" : "bg-black"
+                          } transition-ease-300`}
+                        ></div>
+                        <div
+                          className={`absolute left-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-white transition ${
+                            isModerator ? "translate-x-full" : ""
+                          }`}
+                        ></div>
+                      </div>
+                    </label>{" "}
+                    Yes
                   </div>
                 </div>
               </div>

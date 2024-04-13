@@ -160,10 +160,10 @@ const SignUp = () => {
   return (
     <>
       <Head>
-        <title>Sign up | Interact</title>
+        <title>Sign up | Epione</title>
         <meta
           name="description"
-          content="Sign up for Interact! Interact is a groundbreaking web platform designed for college-going students, freelancers, professionals, and creatives."
+          content="Sign up for Epione! Epione is a groundbreaking web platform designed for college-going students, freelancers, professionals, and creatives."
         />
       </Head>
       <div className="h-full flex">
@@ -363,7 +363,7 @@ const SignUp = () => {
           </form>
           <div className="w-3/4 max-lg:w-full text-[12px] text-center text-gray-400">
             By clicking “Continue” above, you acknowledge that you have read and
-            understood, and agree to Interact&apos;s{" "}
+            understood, and agree to Epione&apos;s{" "}
             <span className="underline underline-offset-2 font-medium cursor-pointer">
               Term & Conditions
             </span>{" "}

@@ -166,7 +166,7 @@ const Onboarding = () => {
   return (
     <>
       <Head>
-        <title>Onboarding | Interact</title>
+        <title>Onboarding | Epione</title>
       </Head>
       {/* <div className="w-screen h-screen bg-wavy bg-moving-gradient z-50"></div> */}
       <div
@@ -188,7 +188,7 @@ const Onboarding = () => {
               <div className="text-5xl font-bold max-md:leading-tight">
                 Welcome to{" "}
                 <span className="bg-white px-2 rounded-md">
-                  <span className="text-gradient">Interact!</span>
+                  <span className="text-gradient">Epione!</span>
                 </span>
                 🌟
               </div>

@@ -237,3 +237,83 @@ export interface UserVerification {
   code: string;
   expirationTime: string; // Assuming string format for date
 }
+
+export interface TypingStatus {
+  user: User;
+  chatID: string;
+}
+
+export interface GroupChat {
+  id: string;
+  title: string;
+  description: string;
+  coverPic: string;
+  adminOnly: boolean;
+  userID: string;
+  user: User;
+  groupID: string;
+  group: Group;
+  messages: GroupChatMessage[];
+  latestMessageID: string;
+  latestMessage: GroupChatMessage | null;
+  createdAt: Date;
+}
+
+export interface GroupChatMessage {
+  id: string;
+  content: string;
+  chatID: string;
+  chat: GroupChat | null;
+  userID: string;
+  user: User;
+  read: boolean;
+  postID: string;
+  post: Post;
+  profileID: string;
+  profile: User;
+  announcementID: string;
+  announcement: Announcement;
+  messageID: string;
+  message: GroupChatMessage | null;
+  createdAt: Date;
+}
+
+export interface Chat {
+  id: string;
+  title: string;
+  description: string;
+  createdByID: string;
+  createdBy: User;
+  acceptedByID: string;
+  acceptedBy: User;
+  createdAt: Date;
+  messages: Message[];
+  latestMessageID: string;
+  latestMessage: Message;
+  lastReadMessageByCreatingUserID: string;
+  lastReadMessageByAcceptingUserID: string;
+  lastReadMessageByCreatingUser: Message;
+  lastReadMessageByAcceptingUser: Message;
+  accepted: boolean;
+  blockedByCreatingUser: boolean;
+  blockedByAcceptingUser: boolean;
+}
+
+export interface Message {
+  id: string;
+  content: string;
+  chatID: string;
+  chat: Chat | null;
+  userID: string;
+  user: User;
+  read: boolean;
+  postID: string;
+  post: Post;
+  profileID: string;
+  profile: User;
+  announcementID: string;
+  announcement: Announcement;
+  messageID: string;
+  message: Message | null;
+  createdAt: Date;
+}

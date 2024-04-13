@@ -10,6 +10,7 @@ import {
   Notification,
   OAuth,
   Option,
+  Page,
   Poll,
   Post,
   Report,
@@ -113,6 +114,15 @@ export const journal: Journal = {
   id: "",
   userID: "",
   pages: [],
+};
+
+export const page: Page = {
+  id: "",
+  journalID: "",
+  content: "",
+  title: "",
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 export const like: Like = {

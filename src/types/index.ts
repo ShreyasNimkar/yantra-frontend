@@ -71,6 +71,7 @@ export interface Journal {
 export interface Page {
   id: string;
   journalID: string;
+  title: string;
   content: string;
   createdAt: Date;
   updatedAt: Date;

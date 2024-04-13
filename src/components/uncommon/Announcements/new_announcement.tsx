@@ -29,31 +29,6 @@ const NewAnnouncement = ({ setShow, group, setAnnouncements }: Props) => {
     };
   }, []);
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "b" && (event.ctrlKey || event.metaKey)) {
-      event.preventDefault();
-      wrapSelectedText("**", "**");
-    }
-  };
-
-  const wrapSelectedText = (prefix: string, suffix: string) => {
-    const textarea = document.getElementById(
-      "textarea_id"
-    ) as HTMLTextAreaElement;
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selectedText = content.substring(start, end);
-    const newText =
-      content.substring(0, start) +
-      prefix +
-      selectedText +
-      suffix +
-      content.substring(end);
-    setContent(newText);
-    textarea.focus();
-    textarea.setSelectionRange(start + prefix.length, end + prefix.length);
-  };
-
   const handleSubmit = async () => {
     if (title.trim() == "") {
       Toaster.error("Title cannot be empty!");

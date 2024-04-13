@@ -10,7 +10,6 @@ import { CustomFlowbiteTheme, Dropdown } from "flowbite-react";
 import DropdownMenuDemo from "./Dropdown";
 const index = () => {
   const [clickedOnProfile, setClickedOnProfile] = useState(false);
-  const [clickedOnFeedback, setClickedOnFeedback] = useState(false);
   const [modalVisibility, setModalVisibility] = useState(false);
 
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -29,6 +28,7 @@ const index = () => {
     };
   }, []);
 
+<<<<<<< HEAD
   const handleMenuClick = (targetId: string) => {
     if (
       router.asPath.split("/")[1].startsWith("event") &&
@@ -64,6 +64,8 @@ const index = () => {
 
   // add active tab opacity
 
+=======
+>>>>>>> 6136c7733c612d8f0a892c182189953a65c5b74d
   return (
     <>
       <div

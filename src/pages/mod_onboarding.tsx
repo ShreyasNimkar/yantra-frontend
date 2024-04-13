@@ -58,7 +58,8 @@ const Onboarding = () => {
   );
 
   const [location, setLocation] = useState("Vellore");
-
+  const [groupName, setGroupName] = useState("");
+  const [groupDescription, setGroupDescription] = useState("");
   const [mutex, setMutex] = useState(false);
 
   const [step, setStep] = useState(1);
@@ -231,6 +232,7 @@ const Onboarding = () => {
                     "Pictures",
                     "Preferences",
                     "Location",
+                    "Group",
                   ]}
                 />
               </div>
@@ -255,6 +257,8 @@ const Onboarding = () => {
                       ? "Links to your Social"
                       : step == 7
                       ? "Pin Your Spot"
+                      : step == 8
+                      ? "Create your Support Group"
                       : ""}
                   </div>
                   <div className="text-base max-md:text-base font-medium">
@@ -272,6 +276,8 @@ const Onboarding = () => {
                       ? `(${links.length}/3)`
                       : step == 7
                       ? `(${location.length}/25)`
+                      : step == 8
+                      ? ``
                       : ""}
                   </div>
                 </div>
@@ -498,6 +504,34 @@ const Onboarding = () => {
                       />
                     </div>
                   </>
+                ) : step == 8 ? (
+                  <>
+                    <div className="font-medium text-sm">
+                      What support does your group provide ?
+                    </div>
+                    <div className="w-full flex items-center gap-2 bg-[#ffffff40] border-[1px] border-black rounded-lg p-2">
+                      {/* <MapPin size={24} weight="duotone" /> */}
+                      <div>Group Name</div>
+                      <input
+                        className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
+                        type="text"
+                        maxLength={25}
+                        value={groupName}
+                        onChange={(el) => setGroupName(el.target.value)}
+                      />
+                    </div>
+                    <div className="w-full flex items-center gap-2 bg-[#ffffff40] border-[1px] border-black rounded-lg p-2">
+                      {/* <MapPin size={24} weight="duotone" /> */}
+                      <div>Group Description</div>
+                      <input
+                        className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
+                        type="text"
+                        maxLength={25}
+                        value={groupDescription}
+                        onChange={(el) => setGroupDescription(el.target.value)}
+                      />
+                    </div>
+                  </>
                 ) : (
                   <></>
                 )}
@@ -524,7 +558,7 @@ const Onboarding = () => {
                       <div></div>
                     )}
 
-                    {step != 7 ? (
+                    {step != 8 ? (
                       <div
                         onClick={handleIncrementStep}
                         className="w-fit text-lg py-2 font-medium px-4 shadow-md hover:bg-primary_comp hover:shadow-lg transition-ease-500 rounded-xl cursor-pointer"

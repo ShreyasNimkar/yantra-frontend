@@ -18,10 +18,10 @@ const index = () => {
           <div className="h-[65%]">Member list</div>
         </div>
         <div className="h-full w-[50%]">
-          <div className="h-[15%] flex justify-start items-center text-2xl">
-            Next Recommended Group/upcoming journey
+          <div className="h-[10%] flex justify-start items-center text-2xl">
+            Next Recommended Group
           </div>
-          <div className="h-[20%] px-3 flex justify-between items-center">
+          <div className="h-[15%] px-3 flex justify-between items-center">
             <div>New Group Name</div>
             <div>34/50 members</div>
             <div

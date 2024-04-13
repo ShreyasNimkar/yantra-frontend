@@ -1,7 +1,11 @@
 import React from "react";
 
 const NewGroup = () => {
-  return <></>;
+  return (
+    <>
+      <div>absdasd</div>
+    </>
+  );
 };
 
 export default NewGroup;

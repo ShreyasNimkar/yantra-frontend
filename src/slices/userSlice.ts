@@ -29,6 +29,7 @@ interface UserState {
   isVerified: boolean;
   isOnboardingComplete: boolean;
   isPasswordSetupComplete: boolean;
+  isModerator:boolean;
 
   votedOptions: string[];
 }
@@ -56,6 +57,7 @@ const initialState: UserState = {
   isVerified: false,
   isOnboardingComplete: false,
   isPasswordSetupComplete: true,
+  isModerator:false,
 
   votedOptions: [],
 };
@@ -68,11 +70,8 @@ export const userSlice = createSlice({
       state.id = action.payload.id;
       state.name = action.payload.name;
       state.username = action.payload.username;
-      state.isOrganization = action.payload.isOrganization;
       state.bio = action.payload.bio;
-      state.tagline = action.payload.tagline;
       state.email = action.payload.email;
-
       state.profilePic = action.payload.profilePic;
       state.coverPic = action.payload.coverPic;
       state.isLoggedIn = true;
@@ -80,15 +79,13 @@ export const userSlice = createSlice({
       state.isVerified = action.payload.isVerified;
       state.isOnboardingComplete = action.payload.isOnboardingComplete;
       state.isPasswordSetupComplete = true;
-
       state.chats = [];
       state.personalChatSlices = [];
-
       state.following = [];
       state.likes = [];
       state.dislikes = [];
-
       state.votedOptions = [];
+      state.isModerator = action.payload.isModerator;
     },
     resetUser: (state) => {
       state.id = "";
@@ -98,7 +95,6 @@ export const userSlice = createSlice({
       state.bio = "";
       state.tagline = "";
       state.email = "";
-
       state.profilePic = "default.jpg";
       state.coverPic = "default.jpg";
       state.isLoggedIn = false;
@@ -106,14 +102,13 @@ export const userSlice = createSlice({
       state.isVerified = false;
       state.chats = [];
       state.personalChatSlices = [];
-
       state.following = [];
       state.likes = [];
       state.dislikes = [];
-
       state.isOnboardingComplete = false;
       state.isPasswordSetupComplete = true;
       state.votedOptions = [];
+      state.isModerator = false;
     },
     setReduxName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
@@ -139,7 +134,6 @@ export const userSlice = createSlice({
     setDisLikes: (state, action: PayloadAction<string[]>) => {
       state.dislikes = action.payload;
     },
-
     setChats: (state, action: PayloadAction<string[]>) => {
       state.chats = action.payload;
     },
@@ -149,14 +143,12 @@ export const userSlice = createSlice({
     setPersonalChatSlices: (state, action: PayloadAction<ChatSlice[]>) => {
       state.personalChatSlices = action.payload;
     },
-
     setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
     setPhoneNumber: (state, action: PayloadAction<string>) => {
       state.phoneNo = action.payload;
     },
-
     setVerificationStatus: (state, action: PayloadAction<boolean>) => {
       state.isVerified = action.payload;
     },
@@ -166,7 +158,6 @@ export const userSlice = createSlice({
     setPasswordSetupStatus: (state, action: PayloadAction<boolean>) => {
       state.isPasswordSetupComplete = action.payload;
     },
-
     setVotedOptions: (state, action: PayloadAction<string[]>) => {
       state.votedOptions = action.payload;
     },

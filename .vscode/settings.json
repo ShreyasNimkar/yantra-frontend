@@ -1,0 +1,30 @@
+{
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "java.saveActions.organizeImports": true,
+  "[css]": {
+    "editor.suggest.insertMode": "replace"
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "node_modules": true
+  },
+  "cSpell.words": [
+    "fuzzysort",
+    "Imprima",
+    "Inconsolata",
+    "Optimised",
+    "Swipeable",
+    "toastify",
+  ],
+  "editor.fontLigatures": false
+}

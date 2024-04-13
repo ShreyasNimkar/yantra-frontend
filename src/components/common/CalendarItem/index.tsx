@@ -7,7 +7,7 @@ const index = () => {
   };
   return (
     <>
-      <div className="flex font-poppins w-full items-center">
+      <div className="flex font-poppins gap-x-5 w-full items-center">
         <div className="w-[10%] h-full bg-transparent border-2 border-purple-400 flex flex-col rounded-xl text-center ">
           <div className="w-full h-2/5 flex-center text-xxs uppercase">
             {moment(eventData.endTime).format("MMM")}

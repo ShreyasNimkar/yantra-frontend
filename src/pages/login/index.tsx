@@ -52,7 +52,7 @@ const Login = () => {
           const user: User = res.data.user;
           user.email = res.data.email;
           user.phoneNo = res.data.phoneNo || "";
-          user.resume = res.data.resume || "";
+
           Cookies.set("token", res.data.token, {
             expires: Number(process.env.NEXT_PUBLIC_COOKIE_EXPIRATION_TIME),
           });
@@ -68,7 +68,7 @@ const Login = () => {
           // userStateFetcher();
           if (user.isVerified) {
             Cookies.set("verified", "true");
-            window.location.replace("/home");
+            window.location.replace("/");
           } else window.location.assign("/verification");
         }
         setMutex(false);

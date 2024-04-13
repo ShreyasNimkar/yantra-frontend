@@ -96,16 +96,25 @@ const SignUp = () => {
     if (mutex) return;
     setMutex(true);
 
-    const randomProfilePic = await generateRandomProfilePicture(1080, 1080);
-
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("name", name);
-    formData.append("username", username.trim().toLowerCase());
-    formData.append("password", password);
-    formData.append("confirmPassword", confirmPassword);
-    if (randomProfilePic) formData.append("profilePic", randomProfilePic);
-
+    // const formData = new FormData();
+    // formData.append("email", email);
+    // formData.append("name", name);
+    // formData.append("username", username.trim().toLowerCase());
+    // formData.append("password", password);
+    // formData.append("confirmPassword", confirmPassword);
+    // formData.append("ismoderator", "true");
+    // formData.append("isdoctor", "true");
+    // formData.append("isstudent", "false");
+    const formData = {
+      email: email,
+      name,
+      username: username.trim().toLowerCase(),
+      password,
+      confirmPassword,
+      isModerator: true,
+      isDoctor: true,
+      isStudent: true,
+    };
     const toaster = Toaster.startLoad("Creating your Account...");
 
     await configuredAxios
@@ -118,7 +127,7 @@ const SignUp = () => {
           const user: User = res.data.user;
           user.email = res.data.email;
           user.phoneNo = res.data.phoneNo || "";
-          user.resume = res.data.resume || "";
+
           Cookies.set("token", res.data.token, {
             expires: Number(process.env.NEXT_PUBLIC_COOKIE_EXPIRATION_TIME),
           });

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // import { MeStopTyping, MeTyping, sendEvent } from '@/utils/ws';
-import { Chat, GroupChat, User } from "@/types";
+import { GroupChat, User } from "@/types";
 import Cookies from "js-cookie";
 import socketService from "@/config/ws";
 import postHandler from "@/handlers/post_handler";

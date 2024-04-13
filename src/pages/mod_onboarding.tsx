@@ -513,7 +513,7 @@ const Onboarding = () => {
                     <div></div>
                   )}
                   <div className="w-fit flex items-center gap-2">
-                    {step == 3 || step == 5 || step == 6 ? (
+                    {step == 5 || step == 6 ? (
                       <div
                         onClick={handleIncrementStep}
                         className="w-fit text-lg py-2 font-medium px-4 shadow-md hover:bg-primary_comp hover:shadow-lg transition-ease-500 rounded-xl cursor-pointer"

@@ -6,6 +6,8 @@ import { useWindowHeight } from "@react-hook/window-size";
 import { useRouter } from "next/router";
 import NavModal from "./navModal";
 import Link from "next/link";
+import { CustomFlowbiteTheme, Dropdown } from "flowbite-react";
+import DropdownMenuDemo from "./Dropdown";
 const index = () => {
   const [clickedOnProfile, setClickedOnProfile] = useState(false);
   const [clickedOnFeedback, setClickedOnFeedback] = useState(false);
@@ -47,6 +49,8 @@ const index = () => {
     }
   };
 
+  const customTheme: CustomFlowbiteTheme["dropdown"] = {};
+
   const windowHeight = useWindowHeight();
 
   // const headerClass =
@@ -68,7 +72,7 @@ const index = () => {
         <div className="w-[20%] h-full flex justify-around items-center">
           photo
         </div>
-        <div className="w-[80%] h-full flex gap-10 items-center justify-end font-spaceGrotesk font-semibold text-lg">
+        <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
             className="cursor-pointer hover-underline-animation"
             href={"/resources"}
@@ -88,7 +92,8 @@ const index = () => {
           >
             Feed
           </Link>
-
+        </div>
+        <div className="w-[20%] h-full flex gap-10 items-center justify-end font-spaceGrotesk font-semibold text-lg">
           {/* <div
                         className="cursor-pointer hover-underline-animation"
                         onClick={() => handleMenuClick('patrons-section')}
@@ -102,7 +107,7 @@ const index = () => {
             My Journal
           </Link>
 
-          <div
+          {/* <div
             className="cursor-pointer rounded-3xl p-5 bg-red-400"
             onClick={() => {
               setClickedOnProfile(true);
@@ -110,7 +115,8 @@ const index = () => {
           ></div>
           <div className={`${clickedOnProfile ? "w-0 h-0" : "hidden w-0 h-0"}`}>
             <ProfileDropdown setShow={setClickedOnProfile} />
-          </div>
+          </div> */}
+          <DropdownMenuDemo />
         </div>
       </div>
 

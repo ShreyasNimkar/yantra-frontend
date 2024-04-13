@@ -8,7 +8,7 @@ import MainWrapper from "@/wrappers/main";
 const Index = () => {
   const [showJournal, setShowJournal] = useState(false);
   const [journalText, setJournalText] = useState("");
-
+  const [chooseTime, setChooseTime] = useState("");
   return (
     <MainWrapper>
       <div>
@@ -47,9 +47,19 @@ const Index = () => {
       <div
         className={`${
           showJournal ? "right-0 " : "-right-[75%] "
-        } bg-white h-full w-[60%] transition-all duration-500 ease-in-out absolute z-10 top-0 `}
+        } bg-white pt-[4rem] h-full px-3 w-[60%] transition-all duration-500 ease-in-out absolute z-10 top-0 `}
       >
-        asd
+        <div className="h-[15%] flex justify-start items-center text-2xl">
+          <div className="">
+            <input
+              value={chooseTime}
+              onChange={(el) => setChooseTime(el.target.value)}
+              type="date"
+              className="w-full cursor-pointer bg-transparent focus:outline-none border-[1px] border-gray-400 rounded-lg p-2"
+            />
+          </div>
+        </div>
+        <div className="h-[85%]">asd</div>
       </div>
     </MainWrapper>
   );

@@ -1,6 +1,6 @@
 import Links from "@/components/utils/edit_links";
 import Tags from "@/components/utils/edit_tags";
-// import CoverPic from "@/components/utils/new_cover";
+import CoverPic from "@/components/utils/new_cover";
 // import { ORG_URL } from "@/config/routes";
 // import { currentOrgSelector } from "@/slices/orgSlice";
 import { Event } from "@/types";
@@ -36,8 +36,6 @@ const EditEvent = ({ setShow, event, setEvents }: Props) => {
   const [image, setImage] = useState<File>();
 
   const [mutex, setMutex] = useState(false);
-
-  const currentOrg = useSelector(currentOrgSelector);
 
   const handleSubmit = async () => {
     if (description.trim() == "") {
@@ -84,7 +82,7 @@ const EditEvent = ({ setShow, event, setEvents }: Props) => {
       formData.append("endTime", end.format("YYYY-MM-DDTHH:mm:ss[Z]"));
     if (image) formData.append("coverPic", image);
 
-    const URL = `${ORG_URL}/${currentOrg.id}/events/${event.id}`;
+    const URL = `/event/${event.id}`;
 
     const res = await patchHandler(URL, formData, "multipart/form-data");
 

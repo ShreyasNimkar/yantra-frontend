@@ -2,6 +2,10 @@ import React from "react";
 import Header from "@/components/Header";
 import Post from "@/components/uncommon/Post";
 import EventCard from "@/components/uncommon/EventCard";
+import EditEvent from "@/sections/Events/edit_event";
+import ConfirmDelete from "@/components/common/confirm_delete";
+
+import deleteHandler from "@/handlers/delete_handler";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
@@ -16,7 +20,7 @@ import NewEvent from "@/sections/Events/new_event";
 import { Plus } from "@phosphor-icons/react";
 import MainWrapper from "@/wrappers/main";
 // import { navbarOpenSelector } from "@/slices/feedSlice";
-
+import { event as initialEvent } from "@/types/initials";
 const index = () => {
   const user = useSelector(userSelector);
 
@@ -29,7 +33,10 @@ const index = () => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
   const userID = useSelector(userIDSelector) || "";
-
+  const [clickedOnEditEvent, setClickedOnEditEvent] = useState(false);
+  const [clickedEditEvent, setClickedEditEvent] = useState(initialEvent);
+  const [clickedOnDeleteEvent, setClickedOnDeleteEvent] = useState(false);
+  const [clickedDeleteEvent, setClickedDeleteEvent] = useState(initialEvent);
   // const open = useSelector(navbarOpenSelector);
 
   const fetchEvents = async (search: string | null) => {
@@ -52,6 +59,22 @@ const index = () => {
     } else {
       if (res.data.message) Toaster.error(res.data.message, "error_toaster");
       else Toaster.error(SERVER_ERROR, "error_toaster");
+    }
+  };
+  const handleDeleteEvent = async () => {
+    const toaster = Toaster.startLoad("Deleting the event...");
+
+    const URL = `/event/${clickedDeleteEvent.id}`;
+
+    const res = await deleteHandler(URL);
+
+    if (res.statusCode === 204) {
+      setEvents((prev) => prev.filter((e) => e.id != clickedDeleteEvent.id));
+      setClickedOnDeleteEvent(false);
+      Toaster.stopLoad(toaster, "Event Deleted", 1);
+    } else {
+      if (res.data.message) Toaster.stopLoad(toaster, res.data.message, 0);
+      else Toaster.stopLoad(toaster, SERVER_ERROR, 0);
     }
   };
   useEffect(() => {
@@ -92,7 +115,15 @@ const index = () => {
               >
                 {events.map((event) => {
                   return (
-                    <EventCard key={event.id} event={event} size={"[22rem]"} />
+                    <EventCard
+                      setClickedOnEditEvent={setClickedOnEditEvent}
+                      setClickedEditEvent={setClickedEditEvent}
+                      setClickedOnDeleteEvent={setClickedOnDeleteEvent}
+                      setClickedDeleteEvent={setClickedDeleteEvent}
+                      key={event.id}
+                      event={event}
+                      size={"[22rem]"}
+                    />
                   );
                 })}
               </InfiniteScroll>
@@ -105,6 +136,19 @@ const index = () => {
       <div>
         {clickedOnNewEvent && (
           <NewEvent setEvents={setEvents} setShow={setClickedOnNewEvent} />
+        )}{" "}
+        {clickedOnEditEvent && (
+          <EditEvent
+            event={clickedEditEvent}
+            setEvents={setEvents}
+            setShow={setClickedOnEditEvent}
+          />
+        )}
+        {clickedOnDeleteEvent && (
+          <ConfirmDelete
+            handleDelete={handleDeleteEvent}
+            setShow={setClickedOnDeleteEvent}
+          />
         )}
       </div>
     </MainWrapper>

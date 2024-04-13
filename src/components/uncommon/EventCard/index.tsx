@@ -30,6 +30,7 @@ import { EVENT_PIC_URL } from "@/config/routes";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { userSelector } from "@/slices/userSlice";
+import { Eye, PencilSimple, Trash } from "@phosphor-icons/react";
 
 interface Props {
   event: Event;
@@ -60,11 +61,11 @@ const EventCard = ({
     <Link
       href={`/events/${event.id}`}
       target="_blank"
-      className={`w-${size} rounded-xl hover:shadow-xl transition-ease-out-500`}
+      className={`w-${size} rounded-xl border-[1px] hover:shadow-xl transition-ease-out-500`}
     >
       <div className="w-full relative group">
         <div className="flex gap-1 top-2 right-2 absolute bg-white text-gray-500 text-xxs px-2 py-1 rounded-lg">
-          {/* <Eye size={12} /> <div>{event.noImpressions}</div> */}
+          <Eye size={12} />
         </div>
         <Image
           width={200}
@@ -89,7 +90,7 @@ const EventCard = ({
                 }}
                 className=" bg-white text-gray-500 text-xxs px-2 py-1 rounded-lg "
               >
-                {/* <Trash size={18} /> */}
+                <Trash size={18} />
               </div>
             }
             <div
@@ -101,7 +102,7 @@ const EventCard = ({
               }}
               className="bg-white text-gray-500 text-xxs px-2 py-1 rounded-lg"
             >
-              {/* <PencilSimple size={18} /> */}
+              <PencilSimple size={18} />
             </div>
           </div>
         )}

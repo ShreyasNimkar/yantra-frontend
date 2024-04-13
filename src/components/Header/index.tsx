@@ -34,7 +34,7 @@ const index = () => {
         className={`hidden fixed bg-white top-0 lg:flex justify-between items-center w-full h-[4rem] px-16 text-black z-[100] transition-all duration-300 ease-in-out`}
       >
         <div className="w-[20%] h-full flex justify-around items-center">
-          photo
+          EPIONE
         </div>
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link

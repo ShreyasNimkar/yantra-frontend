@@ -6,6 +6,7 @@ import Toaster from "@/utils/toaster";
 import React, { useState } from "react";
 import moment from "moment";
 import BuildButton from "@/components/buttons/build_btn";
+import EmojiScale from "@/components/uncommon/EmojiScale";
 interface Props {
   page?: Page;
   show: boolean;
@@ -85,13 +86,16 @@ const Page = ({ page, show, setShow, setPages }: Props) => {
       <textarea
         style={{ resize: "none" }}
         id="textarea_id"
-        className="w-full bg-transparent border-[1px] rounded-lg p-3 focus:outline-none h-[60%]"
+        className="w-full bg-transparent border-[1px] rounded-lg p-3 focus:outline-none h-[50%]"
         value={content}
         onChange={(el) => setContent(el.target.value)}
         maxLength={2000}
         placeholder="Start a conversation..."
       ></textarea>
-
+      <div className="h-[10%] flex justify-around flex-col items-center">
+        <div>Tell us how you feel right now ?</div>
+        <EmojiScale />
+      </div>
       <div
         onClick={handleSubmit}
         className="relative inline-flex ml-5 mt-2 items-center justify-center p-4 px-16 py-3 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group cursor-pointer"

@@ -107,7 +107,7 @@ const SignUpCallback = ({ token }: Props) => {
   return (
     <>
       <Head>
-        <title>SignUp | Interact</title>
+        <title>SignUp | Epione</title>
       </Head>
       <div className="h-screen flex">
         <div className="w-[45%] max-lg:w-full h-full font-primary py-8 px-8 flex flex-col justify-between items-center">
@@ -139,7 +139,7 @@ const SignUpCallback = ({ token }: Props) => {
           </form>
           <div className="w-3/4 max-lg:w-full text-[12px] text-center text-gray-400">
             By clicking “Continue” above, you acknowledge that you have read and
-            understood, and agree to Interact&apos;s{" "}
+            understood, and agree to Epione&apos;s{" "}
             <span className="underline underline-offset-2 font-medium">
               Term & Conditions
             </span>{" "}

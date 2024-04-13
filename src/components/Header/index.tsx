@@ -28,41 +28,6 @@ const index = () => {
     };
   }, []);
 
-  const handleMenuClick = (targetId: string) => {
-    if (
-      router.asPath.split("/")[1].startsWith("event") &&
-      targetId !== "events-section"
-    )
-      router.push(`/#${targetId}`);
-
-    if (router.asPath.split("/")[1].startsWith("team"))
-      router.push(`/#${targetId}`);
-    const targetElement = document.getElementById(targetId);
-    if (targetElement) {
-      const yOffset = 0; // Adjust the yOffset value as per your requirement
-      const y =
-        targetElement.getBoundingClientRect().top +
-        window.pageYOffset +
-        yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
-
-  const customTheme: CustomFlowbiteTheme["dropdown"] = {};
-
-  const windowHeight = useWindowHeight();
-
-  // const headerClass =
-  //   scrollPosition === 0
-  //     ? "opacity-100"
-  //     : scrollPosition > windowHeight - 100
-  //     ? "glassMorphism sticky top-0"
-  //     : scrollPosition > 50 //navbar length
-  //     ? "opacity-0"
-  //     : "opacity-100";
-
-  // add active tab opacity
-
   return (
     <>
       <div

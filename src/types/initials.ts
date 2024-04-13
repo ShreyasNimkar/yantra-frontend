@@ -4,6 +4,7 @@ import {
   Connection,
   Event,
   Group,
+  GroupChat,
   Journal,
   Like,
   Moderator,
@@ -255,4 +256,20 @@ export const userVerification: UserVerification = {
   userId: "",
   code: "",
   expirationTime: "",
+};
+
+export const initialGroupChat: GroupChat = {
+  id: "",
+  title: "",
+  description: "",
+  coverPic: "",
+  adminOnly: false,
+  userID: "",
+  user: user,
+  createdAt: new Date(),
+  messages: [],
+  latestMessageID: "",
+  group: group,
+  groupID: "",
+  latestMessage: null,
 };

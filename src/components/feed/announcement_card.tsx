@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
-import { Announcement, Group } from "@/types";
+import { Announcement, Group, Poll, Post } from "@/types";
 import { USER_PROFILE_PIC_URL } from "@/config/routes";
 import moment from "moment";
 import { userIDSelector, userSelector } from "@/slices/userSlice";
@@ -17,10 +17,10 @@ import Link from "next/link";
 
 interface Props {
   announcement: Announcement;
-  setAnnouncements?: React.Dispatch<React.SetStateAction<Announcement[]>>;
+  setFeed: React.Dispatch<React.SetStateAction<(Post | Announcement | Poll)[]>>;
 }
 
-const AnnouncementCard = ({ announcement, setAnnouncements }: Props) => {
+const AnnouncementCard = ({ announcement, setFeed }: Props) => {
   const [clickedOnOptions, setClickedOnOptions] = useState(false);
   const [clickedOnEdit, setClickedOnEdit] = useState(false);
   const [clickedOnDelete, setClickedOnDelete] = useState(false);
@@ -41,8 +41,7 @@ const AnnouncementCard = ({ announcement, setAnnouncements }: Props) => {
     const res = await deleteHandler(URL);
 
     if (res.statusCode === 204) {
-      if (setAnnouncements)
-        setAnnouncements((prev) => prev.filter((a) => a.id != announcement.id));
+      setFeed((prev) => prev.filter((a) => a.id != announcement.id));
       setClickedOnDelete(false);
       Toaster.stopLoad(toaster, "Announcement Deleted", 1);
     } else {
@@ -69,19 +68,18 @@ const AnnouncementCard = ({ announcement, setAnnouncements }: Props) => {
 
     const res = await patchHandler(URL, formData);
     if (res.statusCode === 200) {
-      if (setAnnouncements)
-        setAnnouncements((prev) =>
-          prev.map((a) => {
-            if (a.id == announcement.id)
-              return {
-                ...a,
-                title,
-                content: caption.replace(/\n{3,}/g, "\n\n"),
-                edited: true,
-              };
-            else return a;
-          })
-        );
+      setFeed((prev) =>
+        prev.map((a) => {
+          if (a.id == announcement.id)
+            return {
+              ...a,
+              title,
+              content: caption.replace(/\n{3,}/g, "\n\n"),
+              edited: true,
+            };
+          else return a;
+        })
+      );
       setClickedOnEdit(false);
       Toaster.stopLoad(toaster, "Announcement Edited", 1);
     } else {

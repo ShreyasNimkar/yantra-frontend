@@ -10,12 +10,26 @@ import NoFeed from "@/components/fillers/feed";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PollCard from "@/components/feed/poll_card";
 import AnnouncementCard from "@/components/feed/announcement_card";
+import { useSelector } from "react-redux";
+import { userSelector } from "@/slices/userSlice";
+import { CiCirclePlus } from "react-icons/ci";
+import NewAnnouncement from "@/components/uncommon/Announcements/new_announcement";
+import { group as initialGroup } from "@/types/initials";
+import NewPoll from "@/components/uncommon/Polls/new_poll";
+import NewPost from "@/components/uncommon/Post/new_post";
 
 const Home = () => {
   const [feed, setFeed] = useState<(Post | Announcement | Poll)[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+
+  const [group, setGroup] = useState(initialGroup);
+
   const [clickedOnNewPost, setClickedOnNewPost] = useState(false);
+  const [clickedOnNewPoll, setClickedOnNewPoll] = useState(false);
+  const [clickedOnNewAnnouncement, setClickedOnNewAnnouncement] =
+    useState(false);
+
   const [loading, setLoading] = useState(true);
 
   const getFeed = () => {
@@ -26,6 +40,9 @@ const Home = () => {
           const addedFeed = [...feed, ...(res.data.feed || [])];
           if (addedFeed.length === feed.length) setHasMore(false);
           setFeed(addedFeed);
+
+          setGroup(res.data.group);
+
           setPage((prev) => prev + 1);
           setLoading(false);
         } else {
@@ -45,10 +62,74 @@ const Home = () => {
     getFeed();
   }, []);
 
+  const user = useSelector(userSelector);
+
   return (
     <>
       <Header />
-      <div className="pt-[4rem] flex flex-row w-full ">
+      <div className="pt-[4rem] flex flex-col w-full ">
+        {clickedOnNewPost && (
+          <NewPost setFeed={setFeed} setShow={setClickedOnNewPost} />
+        )}
+        {clickedOnNewPoll && (
+          <NewPoll
+            setPolls={setFeed}
+            group={group}
+            setShow={setClickedOnNewPoll}
+          />
+        )}
+        {clickedOnNewAnnouncement && (
+          <NewAnnouncement
+            setAnnouncements={setFeed}
+            group={group}
+            setShow={setClickedOnNewAnnouncement}
+          />
+        )}
+        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
+          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
+            Feed
+          </div>
+          {user.isModerator && (
+            <div
+              onClick={() => {
+                setClickedOnNewPost(true);
+              }}
+              className=" w-[50%] h-full flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">
+                To upload a post, click here &nbsp;
+              </p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
+          )}
+
+          <div
+            onClick={() => {
+              setClickedOnNewPoll(true);
+            }}
+            className=" w-[50%] h-full flex items-center justify-end text-center"
+          >
+            <p className="cursor-pointer">
+              To upload a poll, click here &nbsp;
+            </p>
+            <CiCirclePlus size={25} className="cursor-pointer" />
+          </div>
+
+          {user.isModerator && (
+            <div
+              onClick={() => {
+                setClickedOnNewAnnouncement(true);
+              }}
+              className=" w-[50%] h-full flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">
+                To upload an announcement, click here &nbsp;
+              </p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
+          )}
+        </div>
+
         {loading ? (
           <PostsLoader />
         ) : feed.length === 0 ? (
@@ -76,7 +157,13 @@ const Home = () => {
                   />
                 );
               } else
-                return <AnnouncementCard key={item.id} announcement={item} />;
+                return (
+                  <AnnouncementCard
+                    key={item.id}
+                    announcement={item}
+                    setFeed={setFeed}
+                  />
+                );
             })}
           </InfiniteScroll>
         )}

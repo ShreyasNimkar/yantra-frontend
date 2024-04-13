@@ -10,12 +10,29 @@ import NoFeed from "@/components/fillers/feed";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PollCard from "@/components/feed/poll_card";
 import AnnouncementCard from "@/components/feed/announcement_card";
+import { useSelector } from "react-redux";
+import { userSelector } from "@/slices/userSlice";
+import { CiCirclePlus } from "react-icons/ci";
+import NewAnnouncement from "@/components/uncommon/Announcements/new_announcement";
+import { group as initialGroup } from "@/types/initials";
+import NewPoll from "@/components/uncommon/Polls/new_poll";
+import NewPost from "@/components/uncommon/Post/new_post";
+import Masonry from "react-masonry-css";
+import Loader from "@/components/common/loader";
+import MainWrapper from "@/wrappers/main";
 
 const Home = () => {
   const [feed, setFeed] = useState<(Post | Announcement | Poll)[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+
+  const [group, setGroup] = useState(initialGroup);
+
   const [clickedOnNewPost, setClickedOnNewPost] = useState(false);
+  const [clickedOnNewPoll, setClickedOnNewPoll] = useState(false);
+  const [clickedOnNewAnnouncement, setClickedOnNewAnnouncement] =
+    useState(false);
+
   const [loading, setLoading] = useState(true);
 
   const getFeed = () => {
@@ -26,6 +43,9 @@ const Home = () => {
           const addedFeed = [...feed, ...(res.data.feed || [])];
           if (addedFeed.length === feed.length) setHasMore(false);
           setFeed(addedFeed);
+
+          setGroup(res.data.group);
+
           setPage((prev) => prev + 1);
           setLoading(false);
         } else {
@@ -45,12 +65,75 @@ const Home = () => {
     getFeed();
   }, []);
 
+  const user = useSelector(userSelector);
+
   return (
-    <>
-      <Header />
-      <div className="pt-[4rem] flex flex-row w-full ">
+    <MainWrapper>
+      <div className="">
+        {clickedOnNewPost && (
+          <NewPost setFeed={setFeed} setShow={setClickedOnNewPost} />
+        )}
+        {clickedOnNewPoll && (
+          <NewPoll
+            setPolls={setFeed}
+            group={group}
+            setShow={setClickedOnNewPoll}
+          />
+        )}
+        {clickedOnNewAnnouncement && (
+          <NewAnnouncement
+            setAnnouncements={setFeed}
+            group={group}
+            setShow={setClickedOnNewAnnouncement}
+          />
+        )}
+        <div className="flex w-full h-[10vh] my-5 justify-between items-center">
+          <div className="h-full flex items-center text-6xl font-semibold">
+            Feed
+          </div>
+          {user.isModerator && (
+            <div
+              onClick={() => {
+                setClickedOnNewPost(true);
+              }}
+              className=" w-[50%] h-full flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">
+                To upload a post, click here &nbsp;
+              </p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
+          )}
+
+          <div
+            onClick={() => {
+              setClickedOnNewPoll(true);
+            }}
+            className=" w-[50%] h-full flex items-center justify-end text-center"
+          >
+            <p className="cursor-pointer">
+              To upload a poll, click here &nbsp;
+            </p>
+            <CiCirclePlus size={25} className="cursor-pointer" />
+          </div>
+
+          {user.isModerator && (
+            <div
+              onClick={() => {
+                setClickedOnNewAnnouncement(true);
+              }}
+              className=" w-[50%] h-full flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">
+                To upload an announcement, click here &nbsp;
+              </p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
+          )}
+        </div>
+
         {loading ? (
-          <PostsLoader />
+          <Loader />
         ) : feed.length === 0 ? (
           <NoFeed />
         ) : (
@@ -59,29 +142,51 @@ const Home = () => {
             dataLength={feed.length}
             next={getFeed}
             hasMore={hasMore}
-            loader={<PostsLoader />}
+            loader={<Loader />}
           >
-            {feed.map((item) => {
-              if ("images" in item) {
-                return (
-                  <PostComponent key={item.id} setFeed={setFeed} post={item} />
-                );
-              } else if ("totalVotes" in item) {
-                return (
-                  <PollCard
-                    key={item.id}
-                    poll={item}
-                    setPolls={setFeed}
-                    hoverShadow={false}
-                  />
-                );
-              } else
-                return <AnnouncementCard key={item.id} announcement={item} />;
-            })}
+            <Masonry
+              breakpointCols={{ default: feed.length == 1 ? 1 : 2, 768: 1 }}
+              className="masonry-grid"
+              columnClassName="masonry-grid_column"
+            >
+              {feed.map((item, index) => {
+                if ("images" in item) {
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <PostComponent
+                        key={item.id}
+                        setFeed={setFeed}
+                        post={item}
+                      />
+                    </div>
+                  );
+                } else if ("totalVotes" in item) {
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <PollCard
+                        key={item.id}
+                        poll={item}
+                        setPolls={setFeed}
+                        hoverShadow={false}
+                      />
+                    </div>
+                  );
+                } else
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <AnnouncementCard
+                        key={item.id}
+                        announcement={item}
+                        setFeed={setFeed}
+                      />
+                    </div>
+                  );
+              })}
+            </Masonry>
           </InfiniteScroll>
         )}
       </div>
-    </>
+    </MainWrapper>
   );
 };
 

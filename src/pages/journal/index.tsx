@@ -3,25 +3,25 @@ import Header from "@/components/Header";
 import { CiCirclePlus } from "react-icons/ci";
 import moment from "moment";
 import CalendarItem from "@/components/uncommon/CalendarItem";
+import MainWrapper from "@/wrappers/main";
 
 const Index = () => {
   const [showJournal, setShowJournal] = useState(false);
   const [journalText, setJournalText] = useState("");
 
   return (
-    <>
-      <Header />
-      <div className="pt-[4rem] flex justify-center items-center w-full">
-        <div className="flex w-full h-full my-5 px-10 justify-around items-center">
-          <div className="w-[50%] h-full font-semibold">
-            <p className="text-4xl h-[10vh]">My Journal</p>
+    <MainWrapper>
+      <div>
+        <div className="flex w-full h-[10vh] flex-row my-5 justify-between items-center">
+          <div className="h-full flex items-center text-6xl font-semibold">
+            My Journal
           </div>
-          <div className="w-[50%] flex flex-col h-full justify-end items-start">
+          <div className="flex flex-col h-full justify-center items-center">
             <div
               onClick={() => {
                 setShowJournal(true);
               }}
-              className="flex h-[10vh] justify-around cursor-pointer"
+              className="flex justify-around cursor-pointer"
             >
               <p>To vent your heart out, click here &nbsp;</p>
               <CiCirclePlus size={25} />
@@ -51,7 +51,7 @@ const Index = () => {
       >
         asd
       </div>
-    </>
+    </MainWrapper>
   );
 };
 

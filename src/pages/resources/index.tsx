@@ -13,6 +13,7 @@ import ResourceView from "@/components/common/Resource/ResourceView";
 import Loader from "@/components/common/loader";
 import Mascot from "@/components/fillers/mascot";
 import NewResource from "@/components/common/Resource/NewResource";
+import MainWrapper from "@/wrappers/main";
 
 const index = () => {
   const [resources, setResources] = useState<ResourceBucket[]>([]);
@@ -59,17 +60,16 @@ const index = () => {
   }, []);
 
   return (
-    <>
-      <Header />
+    <MainWrapper>
       {clickedOnNewResource && (
         <NewResource
           setShow={setClickedOnNewResource}
           setResources={setResources}
         />
       )}
-      <div className="flex justify-center items-center pt-[4rem]">
-        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
-          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
+      <div>
+        <div className="flex w-full h-[10vh] flex-row my-5 justify-between items-center">
+          <div className="h-full flex items-center text-6xl font-semibold">
             Resources
           </div>
           {user.isModerator && (
@@ -123,7 +123,7 @@ const index = () => {
           <Mascot message="There are no resources at the moment" />
         )}
       </div>
-    </>
+    </MainWrapper>
   );
 };
 

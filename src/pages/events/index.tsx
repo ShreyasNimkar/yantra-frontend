@@ -14,6 +14,7 @@ import Loader from "@/components/common/loader";
 import { Event } from "@/types";
 import NewEvent from "@/sections/Events/new_event";
 import { Plus } from "@phosphor-icons/react";
+import MainWrapper from "@/wrappers/main";
 // import { navbarOpenSelector } from "@/slices/feedSlice";
 
 const index = () => {
@@ -58,29 +59,19 @@ const index = () => {
     fetchEvents(new URLSearchParams(window.location.search).get("search"));
   }, [window.location.search]);
   return (
-    <>
-      <Header />
-      {/* <div className="flex w-full min-h-max  pt-[4rem]">
-        <div className="w-full h-full">
-          <div className="w-full flex-wrap flex sm:w-[100%] h-max py-5 px-10   flex-row  justify-around items-baseline gap-3 gap-y-5">
-            <EventCard /> <EventCard /> <EventCard /> <EventCard />
-          </div>
+    <MainWrapper>
+      <div className="flex w-full h-[10vh] flex-row my-5 justify-between items-center">
+        <div className="h-full flex items-center text-6xl font-semibold">
+          Events
         </div>
-      </div> */}
-      <div className="pt-24 w-full h-full flex justify-around items-center">
-        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
-          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
-            My Events
-          </div>
-          {user.isModerator && (
-            <Plus
-              onClick={() => setClickedOnNewEvent(true)}
-              size={42}
-              className="flex-center rounded-full hover:bg-white transition-ease-300 cursor-pointer"
-              weight="regular"
-            />
-          )}
-        </div>
+        {user.isModerator && (
+          <Plus
+            onClick={() => setClickedOnNewEvent(true)}
+            size={42}
+            className="flex-center rounded-full hover:bg-white transition-ease-300 cursor-pointer"
+            weight="regular"
+          />
+        )}
       </div>
       <div className="w-full flex flex-col gap-6 ">
         {loading ? (
@@ -116,7 +107,7 @@ const index = () => {
           <NewEvent setEvents={setEvents} setShow={setClickedOnNewEvent} />
         )}
       </div>
-    </>
+    </MainWrapper>
   );
 };
 

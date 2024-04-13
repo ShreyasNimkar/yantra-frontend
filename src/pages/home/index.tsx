@@ -17,6 +17,9 @@ import NewAnnouncement from "@/components/uncommon/Announcements/new_announcemen
 import { group as initialGroup } from "@/types/initials";
 import NewPoll from "@/components/uncommon/Polls/new_poll";
 import NewPost from "@/components/uncommon/Post/new_post";
+import Masonry from "react-masonry-css";
+import Loader from "@/components/common/loader";
+import MainWrapper from "@/wrappers/main";
 
 const Home = () => {
   const [feed, setFeed] = useState<(Post | Announcement | Poll)[]>([]);
@@ -65,9 +68,8 @@ const Home = () => {
   const user = useSelector(userSelector);
 
   return (
-    <>
-      <Header />
-      <div className="pt-[4rem] flex flex-col w-full ">
+    <MainWrapper>
+      <div className="">
         {clickedOnNewPost && (
           <NewPost setFeed={setFeed} setShow={setClickedOnNewPost} />
         )}
@@ -85,8 +87,8 @@ const Home = () => {
             setShow={setClickedOnNewAnnouncement}
           />
         )}
-        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
-          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
+        <div className="flex w-full h-[10vh] my-5 justify-between items-center">
+          <div className="h-full flex items-center text-6xl font-semibold">
             Feed
           </div>
           {user.isModerator && (
@@ -131,7 +133,7 @@ const Home = () => {
         </div>
 
         {loading ? (
-          <PostsLoader />
+          <Loader />
         ) : feed.length === 0 ? (
           <NoFeed />
         ) : (
@@ -140,35 +142,51 @@ const Home = () => {
             dataLength={feed.length}
             next={getFeed}
             hasMore={hasMore}
-            loader={<PostsLoader />}
+            loader={<Loader />}
           >
-            {feed.map((item) => {
-              if ("images" in item) {
-                return (
-                  <PostComponent key={item.id} setFeed={setFeed} post={item} />
-                );
-              } else if ("totalVotes" in item) {
-                return (
-                  <PollCard
-                    key={item.id}
-                    poll={item}
-                    setPolls={setFeed}
-                    hoverShadow={false}
-                  />
-                );
-              } else
-                return (
-                  <AnnouncementCard
-                    key={item.id}
-                    announcement={item}
-                    setFeed={setFeed}
-                  />
-                );
-            })}
+            <Masonry
+              breakpointCols={{ default: feed.length == 1 ? 1 : 2, 768: 1 }}
+              className="masonry-grid"
+              columnClassName="masonry-grid_column"
+            >
+              {feed.map((item, index) => {
+                if ("images" in item) {
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <PostComponent
+                        key={item.id}
+                        setFeed={setFeed}
+                        post={item}
+                      />
+                    </div>
+                  );
+                } else if ("totalVotes" in item) {
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <PollCard
+                        key={item.id}
+                        poll={item}
+                        setPolls={setFeed}
+                        hoverShadow={false}
+                      />
+                    </div>
+                  );
+                } else
+                  return (
+                    <div className={`${index != 0 && index != 1 && "mt-4"}`}>
+                      <AnnouncementCard
+                        key={item.id}
+                        announcement={item}
+                        setFeed={setFeed}
+                      />
+                    </div>
+                  );
+              })}
+            </Masonry>
           </InfiniteScroll>
         )}
       </div>
-    </>
+    </MainWrapper>
   );
 };
 

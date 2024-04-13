@@ -160,6 +160,7 @@ export const poll: Poll = {
   isMultiAnswer: false,
   isEdited: false,
   totalVotes: 0,
+  createdAt: new Date(),
 };
 
 export const post: Post = {

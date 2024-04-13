@@ -208,7 +208,7 @@ const SignUp = () => {
                 Start setting up your account ✌️
               </div>
             </div>
-            <div
+            {/* <div
               onClick={handleGoogleLogin}
               className="w-full flex gap-4 justify-center cursor-pointer shadow-md  border-[#D4D9E1] hover:bg-[#F2F2F2] active:bg-[#EDEDED] border-2 rounded-xl px-4 py-2"
             >
@@ -216,7 +216,7 @@ const SignUp = () => {
                 <ReactSVG src="/assets/google.svg" />
               </div>
               <div className="font-medium">Sign up with Google</div>
-            </div>
+            </div> */}
             <div className="w-full flex items-center justify-between">
               <div className="w-[25%] h-[1px] bg-gray-200"></div>
               <div className="w-[50%] text-center text-sm max-lg:text-xs text-gray-400">

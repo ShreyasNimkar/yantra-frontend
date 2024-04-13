@@ -36,22 +36,21 @@ const Index = () => {
         <CalendarItem />
         <CalendarItem />
       </div>
-
-      <div
-        className={`${
-          showJournal ? "right-0 " : "-right-[75%] "
-        } bg-white h-full w-[60%] transition-all duration-1000 ease-linear absolute z-10 top-0 `}
-      >
-        asd
-      </div>
       {showJournal && (
         <div
           onClick={() => {
             setShowJournal(false);
           }}
-          className="fixed top-0 left-0 w-full h-full flex animate-fade_1 justify-center items-center bg-blue-700 bg-opacity-40 transition-all ease-in duration-1000"
+          className="fixed top-0 left-0 w-full h-full flex animate-fade_1 justify-center items-center bg-blue-700 bg-opacity-40 transition-all ease-in duration-500"
         ></div>
-      )}
+      )}{" "}
+      <div
+        className={`${
+          showJournal ? "right-0 " : "-right-[75%] "
+        } bg-white h-full w-[60%] transition-all duration-500 ease-in-out absolute z-10 top-0 `}
+      >
+        asd
+      </div>
     </>
   );
 };

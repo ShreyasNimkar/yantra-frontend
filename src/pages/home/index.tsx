@@ -1,48 +1,88 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { userSelector } from "@/slices/userSlice";
-import { useEffect } from "react";
-import { CiCirclePlus } from "react-icons/ci";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
-import Post from "@/components/uncommon/Post";
-import { homeTabSelector, onboardingSelector } from "@/slices/feedSlice";
-const index = () => {
-  //   useEffect(() => {
-  //     if (user.isLoggedIn) {
-  //     } else if (!user.isLoggedIn) {
-  //       //   sessionStorage.setItem("onboarding-redirect", "home-callback");
-  //       window.location.replace("/login");
-  //     }
-  //   }, []);
-  const active = useSelector(homeTabSelector);
-  const onboarding = useSelector(onboardingSelector);
-  const user = useSelector(userSelector);
+import PostComponent from "@/components/uncommon/Post";
+import { Announcement, Poll, Post } from "@/types";
+import getHandler from "@/handlers/get_handler";
+import Toaster from "@/utils/toaster";
+import { SERVER_ERROR } from "@/config/errors";
+import PostsLoader from "@/components/loaders/posts";
+import NoFeed from "@/components/fillers/feed";
+import InfiniteScroll from "react-infinite-scroll-component";
+import PollCard from "@/components/feed/poll_card";
+import AnnouncementCard from "@/components/feed/announcement_card";
 
-  // useEffect(() => {
-  //   if (user.isOrganization) window.location.replace("/organisation/home");
-  //   else if (user.isLoggedIn && !user.isVerified) {
-  //     window.location.replace("/verification");
-  //   } else if (user.isLoggedIn && !user.isOnboardingComplete) {
-  //     sessionStorage.setItem("onboarding-redirect", "home-callback");
-  //     window.location.replace("/onboarding");
-  //   }
-  // }, []);
+const Home = () => {
+  const [feed, setFeed] = useState<(Post | Announcement | Poll)[]>([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(1);
+  const [clickedOnNewPost, setClickedOnNewPost] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const getFeed = () => {
+    const URL = `/group/feed?page=${page}&limit=${5}`;
+    getHandler(URL)
+      .then((res) => {
+        if (res.statusCode === 200) {
+          const addedFeed = [...feed, ...(res.data.feed || [])];
+          if (addedFeed.length === feed.length) setHasMore(false);
+          setFeed(addedFeed);
+          setPage((prev) => prev + 1);
+          setLoading(false);
+        } else {
+          if (res.data.message)
+            Toaster.error(res.data.message, "error_toaster");
+          else {
+            Toaster.error(SERVER_ERROR, "error_toaster");
+          }
+        }
+      })
+      .catch((err) => {
+        Toaster.error(SERVER_ERROR, "error_toaster");
+      });
+  };
+
+  useEffect(() => {
+    getFeed();
+  }, []);
+
   return (
     <>
       <Header />
       <div className="pt-[4rem] flex flex-row w-full ">
-        <div className="max-sm:hidden sm:w-[20%] h-screen">sss</div>
-        <div className="w-full sm:w-[60%] h-full py-5 px-10 gap-y-3 flex flex-col  justify-start items-baseline gap-1">
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-          <Post />
-        </div>
-        <div className="max-sm:hidden sm:w-[20%] h-screen">sss</div>
+        {loading ? (
+          <PostsLoader />
+        ) : feed.length === 0 ? (
+          <NoFeed />
+        ) : (
+          <InfiniteScroll
+            className="w-full flex flex-col gap-4 dark:gap-0"
+            dataLength={feed.length}
+            next={getFeed}
+            hasMore={hasMore}
+            loader={<PostsLoader />}
+          >
+            {feed.map((item) => {
+              if ("images" in item) {
+                return (
+                  <PostComponent key={item.id} setFeed={setFeed} post={item} />
+                );
+              } else if ("totalVotes" in item) {
+                return (
+                  <PollCard
+                    key={item.id}
+                    poll={item}
+                    setPolls={setFeed}
+                    hoverShadow={false}
+                  />
+                );
+              } else
+                return <AnnouncementCard key={item.id} announcement={item} />;
+            })}
+          </InfiniteScroll>
+        )}
       </div>
     </>
   );
 };
 
-export default index;
+export default Home;

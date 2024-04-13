@@ -120,6 +120,7 @@ export interface Poll {
   isMultiAnswer: boolean;
   isEdited: boolean;
   totalVotes: number;
+  createdAt: Date;
 }
 
 export interface Post {

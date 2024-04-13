@@ -6,17 +6,17 @@ import {
   Group,
   Journal,
   Like,
+  Moderator,
   Notification,
+  OAuth,
   Option,
   Poll,
   Post,
   Report,
-  ResourceFile,
   ResourceBucket,
+  ResourceFile,
   Review,
-  Moderator,
   User,
-  OAuth,
   UserVerification,
 } from "./index";
 
@@ -42,6 +42,7 @@ export const moderator: Moderator = {
   isDoctor: false,
   isStudent: false,
   university: "",
+  user: user,
 };
 export const announcement: Announcement = {
   id: "",
@@ -97,6 +98,7 @@ export const event: Event = {
   description: "",
   links: [],
   tags: [],
+  moderator: moderator,
   noLikes: 0,
   noComments: 0,
   startTime: "",

@@ -42,6 +42,7 @@ export interface Event {
   blurHash: string;
   description: string;
   links: string[];
+  moderator: Moderator;
   tags: string[];
   noLikes: number;
   noComments: number;
@@ -198,6 +199,7 @@ export interface Moderator {
   isDoctor: boolean;
   isStudent: boolean;
   university: string;
+  user: User;
 }
 
 export interface User {

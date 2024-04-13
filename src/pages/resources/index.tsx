@@ -12,6 +12,7 @@ import ResourceCard from "@/components/common/Resource/ResourceBucket";
 import ResourceView from "@/components/common/Resource/ResourceView";
 import Loader from "@/components/common/loader";
 import Mascot from "@/components/fillers/mascot";
+import NewResource from "@/components/common/Resource/NewResource";
 
 const index = () => {
   const [resources, setResources] = useState<ResourceBucket[]>([]);
@@ -60,13 +61,24 @@ const index = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center">
+      {clickedOnNewResource && (
+        <NewResource
+          setShow={setClickedOnNewResource}
+          setResources={setResources}
+        />
+      )}
+      <div className="flex justify-center items-center pt-[4rem]">
         <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
           <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
             Resources
           </div>
           {user.isModerator && (
-            <div className=" w-[50%] h-full flex items-center justify-end text-center">
+            <div
+              onClick={() => {
+                setClickedOnNewResource(true);
+              }}
+              className=" w-[50%] h-full flex items-center justify-end text-center"
+            >
               <p className="cursor-pointer">
                 To upload a file, click here &nbsp;
               </p>

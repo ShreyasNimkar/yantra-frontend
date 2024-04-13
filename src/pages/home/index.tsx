@@ -18,15 +18,15 @@ const index = () => {
   const onboarding = useSelector(onboardingSelector);
   const user = useSelector(userSelector);
 
-  useEffect(() => {
-    if (user.isOrganization) window.location.replace("/organisation/home");
-    else if (user.isLoggedIn && !user.isVerified) {
-      window.location.replace("/verification");
-    } else if (user.isLoggedIn && !user.isOnboardingComplete) {
-      sessionStorage.setItem("onboarding-redirect", "home-callback");
-      window.location.replace("/onboarding");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user.isOrganization) window.location.replace("/organisation/home");
+  //   else if (user.isLoggedIn && !user.isVerified) {
+  //     window.location.replace("/verification");
+  //   } else if (user.isLoggedIn && !user.isOnboardingComplete) {
+  //     sessionStorage.setItem("onboarding-redirect", "home-callback");
+  //     window.location.replace("/onboarding");
+  //   }
+  // }, []);
   return (
     <>
       <Header />

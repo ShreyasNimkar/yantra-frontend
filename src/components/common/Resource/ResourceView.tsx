@@ -16,6 +16,16 @@ import ConfirmDelete from "@/components/common/confirm_delete";
 import Link from "next/link";
 import ResourceFileView from "./ResoureFileView";
 import { userSelector } from "@/slices/userSlice";
+import {
+  ArrowUpRight,
+  Check,
+  PencilSimple,
+  Plus,
+  TrashSimple,
+  UserCircle,
+  UserCircleGear,
+  X,
+} from "@phosphor-icons/react";
 
 interface Props {
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
@@ -62,6 +72,7 @@ const ResourceView = ({
           setResourceFiles(resourceFiles);
           setLoading(false);
         }
+        console.log(res);
       })
       .catch((err) => {
         Toaster.error(SERVER_ERROR, "error_toaster");
@@ -168,23 +179,24 @@ const ResourceView = ({
             <div className="w-1/3 h-full flex flex-col items-center gap-4 border-r-[1px] border-dashed p-2 ">
               {clickedOnEdit ? (
                 <div className="w-full flex justify-end items-center gap-1">
-                  {/* <X
+                  <X
                     size={42}
                     className="flex-center rounded-full hover:bg-slate-100 p-2 transition-ease-300 cursor-pointer"
                     weight="regular"
                     onClick={() => setClickedOnEdit(false)}
-                  /> */}
+                  />
 
-                  {/* <Check
+                  <Check
                     size={42}
                     className="flex-center rounded-full hover:bg-slate-100 p-2 transition-ease-300 cursor-pointer"
                     weight="regular"
                     onClick={handleEdit}
-                  /> */}
+                  />
                 </div>
               ) : (
                 <div className="w-full flex justify-end items-center gap-1">
-                  {/* {checkAccess(resourceBucket.on) && (
+                  {((resourceBucket.onlyAdminEditAccess && user.isModerator) ||
+                    !resourceBucket.onlyAdminEditAccess) && (
                     <div className="relative">
                       <Plus
                         size={40}
@@ -192,29 +204,28 @@ const ResourceView = ({
                         weight="regular"
                         onClick={() => setClickedOnUploadFile(true)}
                       />
-                 
-                    </div>
-                  )} */}
-
-                  {user.isModerator && (
-                    <div className="relative">
-                      {/* <PencilSimple
-                        size={40}
-                        className="flex-center rounded-full hover:bg-slate-100 p-2 transition-ease-300 cursor-pointer"
-                        weight="regular"
-                        onClick={() => setClickedOnEdit(true)}
-                      /> */}
                     </div>
                   )}
 
                   {user.isModerator && (
                     <div className="relative">
-                      {/* <TrashSimple
+                      <PencilSimple
+                        size={40}
+                        className="flex-center rounded-full hover:bg-slate-100 p-2 transition-ease-300 cursor-pointer"
+                        weight="regular"
+                        onClick={() => setClickedOnEdit(true)}
+                      />
+                    </div>
+                  )}
+
+                  {user.isModerator && (
+                    <div className="relative">
+                      <TrashSimple
                         size={40}
                         className="flex-center rounded-full hover:bg-slate-100 p-2 transition-ease-300 cursor-pointer"
                         weight="regular"
                         onClick={() => setClickedOnDelete(true)}
-                      /> */}
+                      />
                     </div>
                   )}
                 </div>
@@ -310,11 +321,11 @@ const ResourceView = ({
                   </div>
                   <div className="flex items-center gap-10">
                     <div className="flex flex-col items-center gap-1">
-                      {/* {resourceBucket.onlyAdminViewAccess ? (
+                      {resourceBucket.onlyAdminViewAccess ? (
                         <UserCircleGear size={42} />
                       ) : (
                         <UserCircle size={42} />
-                      )} */}
+                      )}
                       <div className="flex-center flex-col text-xs">
                         <div className="font-semibold">
                           {resourceBucket.onlyAdminViewAccess
@@ -325,11 +336,11 @@ const ResourceView = ({
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      {/* {resourceBucket.onlyAdminEditAccess ? (
+                      {resourceBucket.onlyAdminEditAccess ? (
                         <UserCircleGear size={42} />
                       ) : (
                         <UserCircle size={42} />
-                      )} */}
+                      )}
                       <div className="flex-center flex-col text-xs">
                         <div className="font-semibold">
                           {resourceBucket.onlyAdminEditAccess
@@ -375,12 +386,12 @@ const ResourceView = ({
                           target="_blank"
                           href={
                             file.isFileUploaded
-                              ? `/organisation/resources/${file.id}`
+                              ? `/resources/${file.id}`
                               : file.path
                           }
                           className="flex-center h-full"
                         >
-                          {/* <ArrowUpRight /> */}
+                          <ArrowUpRight />
                         </Link>
                       </td>
                     </tr>

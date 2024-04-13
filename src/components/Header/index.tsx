@@ -49,21 +49,21 @@ const index = () => {
 
   const windowHeight = useWindowHeight();
 
-  const headerClass =
-    scrollPosition === 0
-      ? "opacity-100"
-      : scrollPosition > windowHeight - 100
-      ? "glassMorphism sticky top-0"
-      : scrollPosition > 50 //navbar length
-      ? "opacity-0"
-      : "opacity-100";
+  // const headerClass =
+  //   scrollPosition === 0
+  //     ? "opacity-100"
+  //     : scrollPosition > windowHeight - 100
+  //     ? "glassMorphism sticky top-0"
+  //     : scrollPosition > 50 //navbar length
+  //     ? "opacity-0"
+  //     : "opacity-100";
 
   // add active tab opacity
 
   return (
     <>
       <div
-        className={`hidden lg:flex justify-between items-center w-full h-[4rem] px-16 text-black z-[100] transition-all duration-300 ease-in-out ${headerClass}`}
+        className={`hidden fixed bg-white top-0 lg:flex justify-between items-center w-full h-[4rem] px-16 text-black z-[100] transition-all duration-300 ease-in-out`}
       >
         <div className="w-[20%] h-full flex justify-around items-center">
           photo
@@ -115,7 +115,7 @@ const index = () => {
       </div>
 
       <div
-        className={`z-30 flex lg:hidden static justify-around items-center w-full h-[7.5vh] text-black ${headerClass}`}
+        className={`fixed top-0 z-30 flex lg:hidden  justify-around items-center w-full h-[7.5vh] text-black `}
       >
         <div
           onClick={() => {

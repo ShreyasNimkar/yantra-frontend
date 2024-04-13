@@ -60,9 +60,9 @@ const index = () => {
   return (
     <>
       <Header />
-      <div className="w-full h-full flex justify-center items-center">
-        <div className="flex w-full h-[10vh] flex-row my-5 px-16 justify-between items-center">
-          <div className="w-fit h-full flex items-center text-6xl font-semibold">
+      <div className="flex justify-center items-center">
+        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
+          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
             Resources
           </div>
           {user.isModerator && (

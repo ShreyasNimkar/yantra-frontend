@@ -24,9 +24,9 @@ const JoinButton = () => {
           </svg>
         </span>
         <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
-          Button Text
+          Join Event
         </span>
-        <span className="relative invisible">Button Text</span>
+        <span className="relative invisible px-5">Join Event</span>
       </a>
     </>
   );

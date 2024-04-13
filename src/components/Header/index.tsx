@@ -28,7 +28,6 @@ const index = () => {
     };
   }, []);
 
-<<<<<<< HEAD
   const handleMenuClick = (targetId: string) => {
     if (
       router.asPath.split("/")[1].startsWith("event") &&
@@ -64,8 +63,6 @@ const index = () => {
 
   // add active tab opacity
 
-=======
->>>>>>> 6136c7733c612d8f0a892c182189953a65c5b74d
   return (
     <>
       <div
@@ -76,26 +73,26 @@ const index = () => {
         </div>
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
-            className="cursor-pointer hover-underline-animation"
+            className="cursor-pointer hover-underline-animation font-semibold text-lg"
             href={"/resources"}
           >
             Resources
           </Link>
           <Link
-            className="cursor-pointer relative hover-underline-animation"
+            className="cursor-pointer relative hover-underline-animation font-semibold text-lg"
             href={"/events"}
           >
             <div>Events</div>
           </Link>
 
           <Link
-            className="cursor-pointer hover-underline-animation"
+            className="cursor-pointer hover-underline-animation font-semibold text-lg"
             href={"/home"}
           >
             Feed
           </Link>
         </div>
-        <div className="w-[20%] h-full flex gap-10 items-center justify-end font-spaceGrotesk font-semibold text-lg">
+        <div className="w-[20%] h-full flex gap-10 items-center justify-end  font-semibold text-lg">
           {/* <div
                         className="cursor-pointer hover-underline-animation"
                         onClick={() => handleMenuClick('patrons-section')}

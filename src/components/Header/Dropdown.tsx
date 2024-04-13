@@ -76,13 +76,13 @@ const DropdownMenuDemo = () => {
             </DropdownMenu.Portal>
           </DropdownMenu.Sub> */}
 
-          <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11 cursor-pointer hover:bg-slate-100">
+          <DropdownMenu.Label className="pl-[25px] p-1 font-semibold text-sm leading-[25px] text-mauve11 cursor-pointer hover:bg-slate-100">
             <Link href={"/profile"}>Profile</Link>
           </DropdownMenu.Label>
           <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[1px]" />
           <DropdownMenu.Label
             onClick={handleLogout}
-            className="pl-[25px] text-xs hover:bg-slate-100 leading-[25px] text-mauve11 cursor-pointer"
+            className="pl-[25px] text-sm p-1 font-semibold hover:bg-slate-100 leading-[25px] text-mauve11 cursor-pointer"
           >
             Logout
           </DropdownMenu.Label>

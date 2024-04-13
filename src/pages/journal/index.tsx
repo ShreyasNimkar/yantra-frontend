@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import { CiCirclePlus } from "react-icons/ci";
 import moment from "moment";
-import CalendarItem from "@/components/common/CalendarItem";
+import CalendarItem from "@/components/uncommon/CalendarItem";
 
 const Index = () => {
   const [showJournal, setShowJournal] = useState(false);
@@ -11,7 +11,7 @@ const Index = () => {
   return (
     <>
       <Header />
-      <div className="flex justify-center items-center w-full">
+      <div className="pt-[4rem] flex justify-center items-center w-full">
         <div className="flex w-full h-full my-5 px-10 justify-around items-center">
           <div className="w-[50%] h-full font-semibold">
             <p className="text-4xl h-[10vh]">My Journal</p>

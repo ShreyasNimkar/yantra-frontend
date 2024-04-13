@@ -7,10 +7,7 @@ const EventPage = ({ slug }: Props) => {
   return (
     <>
       <Header />
-      <div className=" pt-[4rem] bg-slate-600">
-        <div>asd</div>
-        <div>asd</div>
-      </div>
+      <div className=" pt-[4rem] bg-slate-600">ss</div>
     </>
   );
 };

@@ -58,7 +58,7 @@ const EventCard = ({
   const variants = ["w-96", "w-84", "w-80", "w-72", "w-64", "w-[22rem]"];
   return (
     <Link
-      href={`/explore/event/${event.id}`}
+      href={`/events/${event.id}`}
       target="_blank"
       className={`w-${size} rounded-xl hover:shadow-xl transition-ease-out-500`}
     >

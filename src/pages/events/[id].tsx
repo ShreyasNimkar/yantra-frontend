@@ -4,6 +4,7 @@ import Image from "next/image";
 import JoinButton from "@/components/buttons/join_btn";
 import { Event, User } from "@/types";
 import { event as initialEvent } from "@/types/initials";
+import { GetServerSidePropsContext } from "next/types";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -30,7 +31,7 @@ const EventPage = ({ id }: Props) => {
 
   const dispatch = useDispatch();
   const getEvent = () => {
-    const URL = `/events/${id}`;
+    const URL = `/event/${id}`;
     getHandler(URL)
       .then((res) => {
         if (res.statusCode === 200) {
@@ -119,7 +120,7 @@ const EventPage = ({ id }: Props) => {
         <div className="text-sm font-medium text-gray-500 border-b-2 border-gray-300 pb-2">
           HOSTED BY
         </div>
-        <AboutUser user={event.moderator.user} />
+        <AboutUser user={event.group.moderator.user} />
       </div>
 
       {event.links && event.links.length > 0 && (
@@ -137,12 +138,6 @@ const EventPage = ({ id }: Props) => {
         </div>
       )}
       <div className="w-full flex flex-col gap-1 text-sm">
-        <div
-          onClick={handleChat}
-          className="w-fit font-medium text-primary_black hover:text-gray-600 transition-ease-300 cursor-pointer"
-        >
-          Message the Host
-        </div>
         <div
           onClick={() => setClickedOnReport(true)}
           className="w-fit font-medium text-primary_black hover:text-primary_danger transition-ease-300 cursor-pointer"
@@ -242,7 +237,7 @@ const EventPage = ({ id }: Props) => {
         {loading ? (
           <Loader />
         ) : (
-          <div className="w-[70vw] max-md:w-full mx-auto flex flex-col gap-12">
+          <div className="w-[70vw] pt-14 sm:pt-5 max-md:w-full mx-auto flex flex-col gap-12">
             <div className="w-full flex max-md:flex-col gap-12 max-md:px-2">
               <AboutHosts />
               <AboutEvent />
@@ -255,3 +250,10 @@ const EventPage = ({ id }: Props) => {
 };
 
 export default EventPage;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { id } = context.query;
+
+  return {
+    props: { id },
+  };
+}

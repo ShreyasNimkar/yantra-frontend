@@ -5,16 +5,24 @@ import EventCard from "@/components/uncommon/EventCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { userIDSelector } from "@/slices/userSlice";
+import { userIDSelector, userSelector } from "@/slices/userSlice";
 import Toaster from "@/utils/toaster";
 import getHandler from "@/handlers/get_handler";
 import { SERVER_ERROR } from "@/config/errors";
 import NoSearch from "@/components/empty_fillers/search";
 import Loader from "@/components/common/loader";
 import { Event } from "@/types";
+import NewEvent from "@/sections/Events/new_event";
+import { Plus } from "@phosphor-icons/react";
 // import { navbarOpenSelector } from "@/slices/feedSlice";
 
 const index = () => {
+  const user = useSelector(userSelector);
+
+  //
+
+  const [clickedOnNewEvent, setClickedOnNewEvent] = useState(false);
+  //
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [hasMore, setHasMore] = useState(true);
@@ -59,14 +67,29 @@ const index = () => {
           </div>
         </div>
       </div> */}
-      <div className="w-full flex flex-col gap-6 pt-10">
+      <div className="pt-24 w-full h-full flex justify-around items-center">
+        <div className="flex w-full h-[10vh] flex-row my-5 px-10 justify-around items-center">
+          <div className="w-[50%] h-full flex items-center text-4xl font-semibold">
+            My Events
+          </div>
+          {user.isModerator && (
+            <Plus
+              onClick={() => setClickedOnNewEvent(true)}
+              size={42}
+              className="flex-center rounded-full hover:bg-white transition-ease-300 cursor-pointer"
+              weight="regular"
+            />
+          )}
+        </div>
+      </div>
+      <div className="w-full flex flex-col gap-6 ">
         {loading ? (
           <Loader />
         ) : (
           <>
             {events.length > 0 ? (
               <InfiniteScroll
-                className={`w-full ${"px-2 gap-4"} pb-12 flex flex-wrap justify-center transition-ease-out-500`}
+                className={`w-full ${"px-2 gap-4"} pb-12 pt-6 flex flex-wrap items-center justify-center transition-ease-out-500`}
                 dataLength={events.length}
                 next={() =>
                   fetchEvents(
@@ -77,13 +100,20 @@ const index = () => {
                 loader={<Loader />}
               >
                 {events.map((event) => {
-                  return <EventCard key={event.id} event={event} size={96} />;
+                  return (
+                    <EventCard key={event.id} event={event} size={"[22rem]"} />
+                  );
                 })}
               </InfiniteScroll>
             ) : (
               <NoSearch />
             )}
           </>
+        )}
+      </div>
+      <div>
+        {clickedOnNewEvent && (
+          <NewEvent setEvents={setEvents} setShow={setClickedOnNewEvent} />
         )}
       </div>
     </>

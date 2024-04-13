@@ -114,7 +114,7 @@ const Onboarding = () => {
       dispatch(setOnboarding(true));
       dispatch(setOnboardingStatus(true));
 
-      window.location.replace("/group/join");
+      window.location.replace("/group");
     } else if (res.statusCode == 413) {
       Toaster.stopLoad(toaster, "Image too large", 0);
     } else {

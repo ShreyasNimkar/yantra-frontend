@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "@/components/Header";
+import GroupChat from "@/components/messaging/GroupChat";
 const index = () => {
   return (
     <>
       <Header />
-      <div className="pt-[4rem] h-[95vh]  justify-around items-center px-10 flex ">
-        <div className="h-full w-[50%]">
+      <div className="pt-[4rem] h-[95vh] font-poppins justify-around items-center px-10 flex ">
+        <div className="h-full w-[50%] px-3 ">
           <div className="h-[15%] flex justify-start items-center text-3xl">
             Support Group Name
           </div>
@@ -50,7 +51,9 @@ const index = () => {
               <span className="relative invisible">Join</span>
             </div>
           </div>
-          <div className="h-[65%]">Groupchats</div>
+          <div className="h-[75%]">
+            <GroupChat />
+          </div>
         </div>
       </div>
     </>

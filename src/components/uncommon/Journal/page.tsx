@@ -69,7 +69,7 @@ const Page = ({ page, show, setShow, setPages }: Props) => {
     <div
       className={`${
         show ? "right-0 " : "-right-[75%] "
-      } bg-white h-full w-[50%] transition-all duration-500 ease-in-out absolute z-10 top-[4rem] shadow-lg border-l-[1px] border-black px-3 py-3`}
+      } bg-white h-full font-poppins w-[50%] transition-all duration-500 ease-in-out absolute z-10 top-[4rem] shadow-lg border-l-[1px] border-black px-3 py-3`}
     >
       <div className="h-[7.5%] text-2xl underline underline-offset-[3px]">
         {formattedDate}

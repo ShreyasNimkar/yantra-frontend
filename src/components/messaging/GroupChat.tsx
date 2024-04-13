@@ -17,7 +17,7 @@ import Cookies from "js-cookie";
 import socketService from "@/config/ws";
 import { useWindowWidth } from "@react-hook/window-size";
 
-const GroupChat = () => {
+const GroupChatWindow = () => {
   const [chat, setChat] = useState<GroupChat>(initialGroupChat);
   const [messages, setMessages] = useState<GroupChatMessage[]>([]);
   const [loading, setLoading] = useState(true);
@@ -130,4 +130,4 @@ const GroupChat = () => {
   );
 };
 
-export default GroupChat;
+export default GroupChatWindow;

@@ -16,7 +16,7 @@ const PageBox = ({ page, setClickedPage, setShowPage }: Props) => {
           setClickedPage(page);
           setShowPage(true);
         }}
-        className="flex font-poppins gap-x-5 w-full items-center cursor-pointer"
+        className="flex font-poppins font-poppins gap-x-5 w-full items-center cursor-pointer"
       >
         Page:
         {page.title}

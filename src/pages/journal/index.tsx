@@ -59,8 +59,8 @@ const Index = () => {
   return (
     <MainWrapper>
       <div>
-        <div className="flex w-full h-[10vh] flex-row my-5 justify-between items-center">
-          <div className="h-full flex items-center text-6xl font-semibold">
+        <div className="flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
+          <div className="h-full flex items-center text-5xl font-semibold">
             My Journal
           </div>
           {showNewJournalOption && (

@@ -19,7 +19,7 @@ const ResourceCard = ({
         if (setClickedOnResource) setClickedOnResource(true);
         if (setClickedResource) setClickedResource(resource);
       }}
-      className={`w-72 bg-white relative flex flex-col items-center gap-2 rounded-lg px-6 py-8 border-gray-400 border-[1px] ${
+      className={`w-72 font-poppins cursor-pointer bg-white relative flex flex-col items-center gap-2 rounded-lg px-6 py-8 border-gray-400 border-[1px] ${
         // checkAccess(resource.viewAccess) ? 'cursor-pointer hover:shadow-xl' : 'cursor-default'
         ""
       } transition-ease-300`}

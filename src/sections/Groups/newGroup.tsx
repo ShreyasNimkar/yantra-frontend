@@ -1,6 +1,6 @@
 import { Group } from "@/types";
 import React from "react";
-
+import { useState } from "react";
 interface Props {
   setGroups: React.Dispatch<React.SetStateAction<Group[]>>;
 }

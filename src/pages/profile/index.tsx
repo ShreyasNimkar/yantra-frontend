@@ -12,8 +12,8 @@ const index = () => {
   return (
     <>
       <Header />
-      <div className="pt-[4rem] px-10">
-        <div className="h-[35vh] bg-violet-500 flex">
+      <div className="pt-[4rem] font-poppins px-10">
+        <div className="h-[35vh]  flex">
           <div className="h-full flex justify-around items-center w-[30%]">
             <div className="w-[10rem] h-[10rem] bg-zinc-600 rounded-full"></div>
           </div>
@@ -24,13 +24,13 @@ const index = () => {
             <div></div>
           </div>
         </div>
-        <div className="h-[55vh] bg-violet-400 flex">
+        <div className="h-[55vh]  flex">
           <div className="h-full w-[50%] p-10">
             <LineGraph />
           </div>
-          <div className="h-full w-[50%] flex justify-center items-center ">
+          {/* <div className="h-full w-[50%] flex justify-center items-center ">
             <PolarGraph />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

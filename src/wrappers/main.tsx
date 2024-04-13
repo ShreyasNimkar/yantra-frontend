@@ -9,7 +9,7 @@ const MainWrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <div className="pt-16 mx-12">{children}</div>
+      <div className="pt-16 z-50 mx-12">{children}</div>
     </>
   );
 };

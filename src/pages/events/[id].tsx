@@ -101,7 +101,7 @@ const EventPage = ({ id }: Props) => {
     </div>
   );
   const AboutHosts = () => (
-    <div className="w-2/5 max-md:w-full flex flex-col gap-6">
+    <div className="w-2/5 font-poppins max-md:w-full flex flex-col gap-6">
       <Image
         width={500}
         height={280}
@@ -148,7 +148,7 @@ const EventPage = ({ id }: Props) => {
     </div>
   );
   const AboutEvent = () => (
-    <div className="w-3/5 max-md:w-full flex flex-col gap-6">
+    <div className="w-3/5 font-poppins max-md:w-full flex flex-col gap-6">
       <div className="font-semibold text-5xl max-md:text-center leading-tight">
         {event.title}
       </div>
@@ -233,7 +233,7 @@ const EventPage = ({ id }: Props) => {
   return (
     <>
       <Header />
-      <div className="w-full py-12 px-20 max-md:p-2 flex flex-col transition-ease-out-500 font-primary">
+      <div className="w-full font-poppins py-12 px-20 max-md:p-2 flex flex-col transition-ease-out-500 font-primary">
         {loading ? (
           <Loader />
         ) : (

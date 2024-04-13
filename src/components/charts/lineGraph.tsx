@@ -1,115 +1,48 @@
 import React from "react";
+import {
+  Chart as ChartJS,
+  LineElement,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  scales,
+} from "chart.js";
+import { Line } from "react-chartjs-2";
+import { plugins } from "chart.js/dist/core";
 
-const LineChart = ({ dataSet }) => {
-  //config
-  const config = {
-    type: "line",
-    data: data,
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: "top",
-        },
-        title: {
-          display: true,
-          text: "Chart.js Line Chart",
-        },
-      },
-    },
-  };
-  //setup
-  const DATA_COUNT = 7;
-  const NUMBER_CFG = { count: DATA_COUNT, min: -100, max: 100 };
+ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-  const labels = Utils.months({ count: 7 });
+const LineGraph = () => {
   const data = {
-    labels: labels,
+    labels: ["asd", "asd", "asd"],
     datasets: [
       {
-        label: "Dataset 1",
-        data: Utils.numbers(NUMBER_CFG),
-        borderColor: Utils.CHART_COLORS.red,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-      },
-      {
-        label: "Dataset 2",
-        data: Utils.numbers(NUMBER_CFG),
-        borderColor: Utils.CHART_COLORS.blue,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+        labels: "oaisjdoaijsd",
+        data: [1, 23, 32],
+        backgroundColor: "aqua",
+        borderColor: "black",
+        pointBorderColor: "red",
       },
     ],
   };
-  //actions add or remove
-  const actions = [
-    {
-      name: "Randomize",
-      handler(chart) {
-        chart.data.datasets.forEach((dataset) => {
-          dataset.data = Utils.numbers({
-            count: chart.data.labels.length,
-            min: -100,
-            max: 100,
-          });
-        });
-        chart.update();
-      },
-    },
-    {
-      name: "Add Dataset",
-      handler(chart) {
-        const data = chart.data;
-        const dsColor = Utils.namedColor(chart.data.datasets.length);
-        const newDataset = {
-          label: "Dataset " + (data.datasets.length + 1),
-          backgroundColor: Utils.transparentize(dsColor, 0.5),
-          borderColor: dsColor,
-          data: Utils.numbers({
-            count: data.labels.length,
-            min: -100,
-            max: 100,
-          }),
-        };
-        chart.data.datasets.push(newDataset);
-        chart.update();
-      },
-    },
-    {
-      name: "Add Data",
-      handler(chart) {
-        const data = chart.data;
-        if (data.datasets.length > 0) {
-          data.labels = Utils.months({ count: data.labels.length + 1 });
 
-          for (let index = 0; index < data.datasets.length; ++index) {
-            data.datasets[index].data.push(Utils.rand(-100, 100));
-          }
-
-          chart.update();
-        }
+  const options = {
+    plugins: {
+      legend: true,
+    },
+    scales: {
+      y: {
+        min: 3,
+        max: 6,
       },
     },
-    {
-      name: "Remove Dataset",
-      handler(chart) {
-        chart.data.datasets.pop();
-        chart.update();
-      },
-    },
-    {
-      name: "Remove Data",
-      handler(chart) {
-        chart.data.labels.splice(-1, 1); // remove the label first
+  };
 
-        chart.data.datasets.forEach((dataset) => {
-          dataset.data.pop();
-        });
-
-        chart.update();
-      },
-    },
-  ];
-  return <></>;
+  return (
+    <>
+      <Line data={data}></Line>
+    </>
+  );
 };
 
-export default LineChart;
+export default LineGraph;

@@ -38,26 +38,26 @@ const index = () => {
         </div>
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
-            className="cursor-pointer hover-underline-animation"
+            className="cursor-pointer hover-underline-animation font-semibold text-lg"
             href={"/resources"}
           >
             Resources
           </Link>
           <Link
-            className="cursor-pointer relative hover-underline-animation"
+            className="cursor-pointer relative hover-underline-animation font-semibold text-lg"
             href={"/events"}
           >
             <div>Events</div>
           </Link>
 
           <Link
-            className="cursor-pointer hover-underline-animation"
+            className="cursor-pointer hover-underline-animation font-semibold text-lg"
             href={"/home"}
           >
             Feed
           </Link>
         </div>
-        <div className="w-[20%] h-full flex gap-10 items-center justify-end font-spaceGrotesk font-semibold text-lg">
+        <div className="w-[20%] h-full flex gap-10 items-center justify-end  font-semibold text-lg">
           {/* <div
                         className="cursor-pointer hover-underline-animation"
                         onClick={() => handleMenuClick('patrons-section')}

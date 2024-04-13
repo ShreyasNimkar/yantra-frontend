@@ -1,7 +1,9 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Header from "@/components/Header";
-// import LineChart from "@/components/charts/lineGraph";
+
+import LineGraph from "@/components/charts/lineGraph";
+import { PolarGraph } from "@/components/charts/polarGraph";
 const index = () => {
   const dataSet = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
@@ -23,10 +25,12 @@ const index = () => {
           </div>
         </div>
         <div className="h-[55vh] bg-violet-400 flex">
-          <div className="h-full w-[30%]">
-            {/* <LineChart dataSet={dataSet} /> */}
+          <div className="h-full w-[50%] p-10">
+            <LineGraph />
           </div>
-          <div className="h-full w-[70%]">name</div>
+          <div className="h-full w-[50%] flex justify-center items-center ">
+            <PolarGraph />
+          </div>
         </div>
       </div>
     </>

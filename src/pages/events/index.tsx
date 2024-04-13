@@ -21,6 +21,7 @@ import { Plus } from "@phosphor-icons/react";
 import MainWrapper from "@/wrappers/main";
 // import { navbarOpenSelector } from "@/slices/feedSlice";
 import { event as initialEvent } from "@/types/initials";
+import { CiCirclePlus } from "react-icons/ci";
 const index = () => {
   const user = useSelector(userSelector);
 
@@ -88,12 +89,17 @@ const index = () => {
           Events
         </div>
         {user.isModerator && (
-          <Plus
-            onClick={() => setClickedOnNewEvent(true)}
-            size={42}
-            className="flex-center rounded-full hover:bg-white transition-ease-300 cursor-pointer"
-            weight="regular"
-          />
+          <div
+            onClick={() => {
+              setClickedOnNewEvent(true);
+            }}
+            className=" w-[50%] h-full flex items-center justify-end text-center"
+          >
+            <p className="cursor-pointer">
+              To create an event, click here &nbsp;
+            </p>
+            <CiCirclePlus size={25} className="cursor-pointer" />
+          </div>
         )}
       </div>
       <div className="w-full flex flex-col gap-6 ">

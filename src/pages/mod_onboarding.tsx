@@ -542,7 +542,10 @@ const Onboarding = () => {
                     </div>
                     <div className="w-full flex items-center gap-2 bg-[#ffffff40] border-[1px] border-black rounded-lg p-2">
                       {/* <MapPin size={24} weight="duotone" /> */}
-                      <div>Group Description</div>
+                      <div>
+                        Group <br />
+                        Description
+                      </div>
                       <textarea
                         className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
                         maxLength={1000}

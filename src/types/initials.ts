@@ -96,6 +96,7 @@ export const group: Group = {
   moderator: moderator,
   numberOfMembers: 0,
   memberships: [initialGroupMembership],
+  location: "",
 };
 
 export const event: Event = {

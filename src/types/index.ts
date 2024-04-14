@@ -69,6 +69,7 @@ export interface Group {
   moderator: Moderator;
   numberOfMembers: number;
   memberships: [GroupMembership];
+  location: string;
 }
 export interface Journal {
   id: string;

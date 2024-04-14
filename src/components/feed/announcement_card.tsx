@@ -93,7 +93,7 @@ const AnnouncementCard = ({ announcement, setFeed }: Props) => {
   return (
     <div
       onClick={() => setClickedOnOptions(false)}
-      className="w-full max-w-3xl mx-auto relative overflow-clip bg-white font-primary flex gap-1 rounded-lg border-gray-300 border-[1px] dark:border-b-[1px] p-4"
+      className="w-full max-w-3xl mx-auto hover:shadow-lg transition-ease-out-500 relative overflow-clip bg-kinda_purple font-primary flex gap-1 rounded-lg border-gray-300 border-[1px] dark:border-b-[1px] p-4"
     >
       {clickedOnDelete && (
         <ConfirmDelete

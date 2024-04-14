@@ -181,7 +181,7 @@ const EventPage = ({ id }: Props) => {
     </div>
   );
   const AboutEvent = () => (
-    <div className="w-3/5 font-poppins max-md:w-full flex flex-col gap-6">
+    <div className="w-3/5 font-poppins max-md:w-full flex flex-col gap-3">
       <div className="font-semibold text-5xl max-md:text-center leading-tight">
         {event.title}
       </div>

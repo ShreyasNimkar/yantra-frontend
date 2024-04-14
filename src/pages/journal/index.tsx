@@ -12,6 +12,7 @@ import PageComponent from "@/components/uncommon/Journal/page";
 import PageBox from "@/components/uncommon/Journal/page_box";
 import Loader from "@/components/common/loader";
 import { page } from "@/types/initials";
+import Image from "next/image";
 
 const Index = () => {
   const [showNewJournalOption, setShowNewJournalOption] = useState(false);
@@ -57,8 +58,17 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-singlePerson-bg bg-no-repeat bg-right-bottom ">
+    <>
       <MainWrapper>
+        <div className="fixed bottom-0 left-0">
+          <Image
+            src={"/singlePersonFlipped.svg"}
+            width={1000}
+            height={1000}
+            alt="person"
+            className=" h-[15rem] w-auto"
+          />
+        </div>
         <div>
           <div className="  flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
             <div className="h-full flex items-center text-5xl font-semibold">
@@ -119,7 +129,7 @@ const Index = () => {
           </>
         )}
       </MainWrapper>
-    </div>
+    </>
   );
 };
 

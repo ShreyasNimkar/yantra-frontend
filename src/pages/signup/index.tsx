@@ -183,7 +183,7 @@ const SignUp = () => {
             height={1000}
             width={1000}
             src={"/peopleBox.png"}
-            className="w-full object-contain"
+            className="h-[100vh] object-cover"
           />
         </div>
         <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">

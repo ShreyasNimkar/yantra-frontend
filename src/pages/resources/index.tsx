@@ -14,7 +14,7 @@ import Loader from "@/components/common/loader";
 import Mascot from "@/components/fillers/mascot";
 import NewResource from "@/components/common/Resource/NewResource";
 import MainWrapper from "@/wrappers/main";
-
+import Image from "next/image";
 const index = () => {
   const [resources, setResources] = useState<ResourceBucket[]>([]);
   const [loading, setLoading] = useState(true);
@@ -61,6 +61,15 @@ const index = () => {
 
   return (
     <MainWrapper>
+      <div className="fixed bottom-0 right-0">
+        <Image
+          src={"/sharingPeople.svg"}
+          width={1000}
+          height={1000}
+          alt="person"
+          className=" h-[15rem] w-auto"
+        />
+      </div>
       {clickedOnNewResource && (
         <NewResource
           setShow={setClickedOnNewResource}

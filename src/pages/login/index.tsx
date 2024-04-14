@@ -191,7 +191,7 @@ const Login = () => {
             height={1000}
             width={1000}
             src={"/peopleBox.png"}
-            className="h-full"
+            className="h-[100vh] object-cover"
           />
         </div>
       </div>

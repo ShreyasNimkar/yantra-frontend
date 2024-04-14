@@ -63,7 +63,7 @@ const NewPoll = ({ setPolls, group, setShow }: Props) => {
 
   return (
     <>
-      <div className="w-[90%] font-poppins lg:w-[40%] flex flex-col items-center gap-4  fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[100] bg-navbar rounded-xl py-6 px-8 shadow-xl animate-fade_third">
+      <div className="w-[90%] bg-white font-poppins lg:w-[40%] flex flex-col items-center gap-4  fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[100] rounded-xl py-6 px-8 shadow-xl animate-fade_third">
         <X
           size={20}
           className="absolute top-4 right-4 cursor-pointer"

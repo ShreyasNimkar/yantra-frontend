@@ -48,9 +48,9 @@ const index = () => {
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
             className="cursor-pointer hover-underline-animation font-semibold text-lg"
-            href={"/resources"}
+            href={"/home"}
           >
-            Resources
+            Feed
           </Link>
           <Link
             className="cursor-pointer relative hover-underline-animation font-semibold text-lg"
@@ -58,12 +58,11 @@ const index = () => {
           >
             <div>Events</div>
           </Link>
-
           <Link
             className="cursor-pointer hover-underline-animation font-semibold text-lg"
-            href={"/home"}
+            href={"/resources"}
           >
-            Feed
+            Resources
           </Link>
         </div>
         <div className="w-[20%] h-full flex gap-10 items-center justify-end  font-semibold text-lg">

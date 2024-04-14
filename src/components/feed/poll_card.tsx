@@ -49,7 +49,7 @@ const PollCard = ({ poll, setPolls, hoverShadow = true }: Props) => {
         />
       )}
       <div
-        className={`w-full max-w-3xl mx-auto bg-white flex gap-1 p-4 border-[1px] border-gray-300 rounded-xl ${
+        className={`w-full max-w-3xl hover:shadow-lg transition-ease-out-500 mx-auto bg-mint flex gap-1 p-4 border-[1px] border-gray-300 rounded-xl ${
           hoverShadow ? "hover:shadow-xl" : ""
         } transition-ease-300 z-[1]`}
       >

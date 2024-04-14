@@ -53,7 +53,14 @@ export interface Event {
   createdAt: string; // Assuming timestamp is represented as string
   comments: Comment[];
 }
-
+export interface GroupMembership {
+  id: string;
+  userID: string;
+  user: User;
+  groupID: string;
+  group: Group;
+  createdAt: Date;
+}
 export interface Group {
   id: string;
   title: string;
@@ -61,6 +68,7 @@ export interface Group {
   moderatorID: string;
   moderator: Moderator;
   numberOfMembers: number;
+  memberships: [GroupMembership];
 }
 export interface Journal {
   id: string;

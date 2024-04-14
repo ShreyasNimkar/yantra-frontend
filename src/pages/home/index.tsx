@@ -98,9 +98,7 @@ const Home = () => {
             }}
             className="flex items-center justify-end text-center"
           >
-            <p className="cursor-pointer">
-              To upload a post, click here &nbsp;
-            </p>
+            <p className="cursor-pointer">Upload a post &nbsp;</p>
             <CiCirclePlus size={25} className="cursor-pointer" />
           </div>
 
@@ -111,9 +109,7 @@ const Home = () => {
               }}
               className="flex items-center justify-end text-center"
             >
-              <p className="cursor-pointer">
-                To upload a poll, click here &nbsp;
-              </p>
+              <p className="cursor-pointer">Upload a poll &nbsp;</p>
               <CiCirclePlus size={25} className="cursor-pointer" />
             </div>
           )}
@@ -125,9 +121,7 @@ const Home = () => {
               }}
               className="flex items-center justify-end text-center"
             >
-              <p className="cursor-pointer">
-                To upload an announcement, click here &nbsp;
-              </p>
+              <p className="cursor-pointer">Upload an announcement &nbsp;</p>
               <CiCirclePlus size={25} className="cursor-pointer" />
             </div>
           )}

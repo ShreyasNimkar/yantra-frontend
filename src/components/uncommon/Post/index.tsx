@@ -129,7 +129,7 @@ const Post = ({
   return (
     <div
       onClick={() => setClickedOnOptions(false)}
-      className={`w-full relative bg-white dark:bg-transparent font-primary flex gap-1 rounded-lg dark:rounded-none dark:text-white border-gray-300 border-[1px] dark:border-x-0 dark:border-t-0 dark:border-dark_primary_btn ${"dark:border-b-[1px] p-4"}`}
+      className={`w-full relative bg-blue_bell dark:bg-transparent hover:shadow-lg transition-ease-out-500 font-primary flex gap-1 rounded-lg dark:rounded-none dark:text-white border-gray-300 border-[1px] dark:border-x-0 dark:border-t-0 dark:border-dark_primary_btn ${"dark:border-b-[1px] p-4"}`}
     >
       {clickedOnDelete && (
         <ConfirmDelete

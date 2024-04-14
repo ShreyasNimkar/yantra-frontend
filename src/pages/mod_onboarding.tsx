@@ -59,6 +59,7 @@ const Onboarding = () => {
 
   const [location, setLocation] = useState("Vellore");
   const [groupName, setGroupName] = useState("");
+  const [groupLocation, setGroupLocation] = useState("");
   const [groupDescription, setGroupDescription] = useState("");
   const [mutex, setMutex] = useState(false);
 
@@ -184,14 +185,13 @@ const Onboarding = () => {
           />
         )}
         {!clickedOnBuild ? (
-          <div className="glassMorphism animate-fade_1 page w-fit max-md:w-[90%] h-56 max-md:h-72 px-8 py-10 font-primary flex flex-col justify-between rounded-lg shadow-xl hover:shadow-2xl transition-ease-300 absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
+          <div className="glassMorphism font-dmSans animate-fade_1 page w-fit max-md:w-[90%] h-56 max-md:h-72 px-8 py-10 font-primary flex flex-col justify-between rounded-lg shadow-xl hover:shadow-2xl transition-ease-300 absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
             <div className="flex flex-col gap-2">
               <div className="text-5xl font-bold max-md:leading-tight">
                 Welcome to{" "}
                 <span className="bg-white px-2 rounded-md">
                   <span className="text-gradient">Epione!</span>
                 </span>
-                🌟
               </div>
               <div>Complete your Profile and get yourself discovered!</div>
             </div>
@@ -214,7 +214,7 @@ const Onboarding = () => {
             </div>
           </div>
         ) : (
-          <div className="w-full h-full flex justify-between items-center max-md:px-4 font-primary ">
+          <div className="w-full font-dmSans h-full flex justify-between items-center max-md:px-4 font-primary ">
             <div className="w-3/5 max-lg:w-full h-full p-12 max-md:px-2 font-primary flex flex-col gap-16 items-center border-r-2 max-md:border-r-0 border-primary_comp">
               <div className="w-full flex justify-start items-center gap-1">
                 <ReactSVG src="/onboarding_logo.svg" />
@@ -523,12 +523,22 @@ const Onboarding = () => {
                     <div className="w-full flex items-center gap-2 bg-[#ffffff40] border-[1px] border-black rounded-lg p-2">
                       {/* <MapPin size={24} weight="duotone" /> */}
                       <div>Group Description</div>
-                      <input
+                      <textarea
                         className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
-                        type="text"
                         maxLength={1000}
                         value={groupDescription}
                         onChange={(el) => setGroupDescription(el.target.value)}
+                      />
+                    </div>
+                    <div className="w-full flex items-center gap-2 bg-[#ffffff40] border-[1px] border-black rounded-lg p-2">
+                      {/* <MapPin size={24} weight="duotone" /> */}
+                      <div>Location</div>
+                      <input
+                        className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
+                        type="text"
+                        maxLength={25}
+                        value={groupLocation}
+                        onChange={(el) => setGroupLocation(el.target.value)}
                       />
                     </div>
                   </>

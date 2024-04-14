@@ -5,6 +5,7 @@ import {
   Event,
   Group,
   GroupChat,
+  GroupMembership,
   Journal,
   Like,
   Moderator,
@@ -79,6 +80,14 @@ export const connection: Connection = {
   receiver: user,
 };
 
+export const initialGroupMembership: GroupMembership = {
+  id: "",
+  userID: "",
+  user: {} as User, // Assuming User type is defined
+  groupID: "",
+  group: {} as Group,
+  createdAt: new Date(),
+};
 export const group: Group = {
   id: "",
   title: "",
@@ -86,6 +95,7 @@ export const group: Group = {
   moderatorID: "",
   moderator: moderator,
   numberOfMembers: 0,
+  memberships: [initialGroupMembership],
 };
 
 export const event: Event = {

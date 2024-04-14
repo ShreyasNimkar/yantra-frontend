@@ -6,6 +6,10 @@ import { group as initialGroup } from "@/types/initials";
 import getHandler from "@/handlers/get_handler";
 import Toaster from "@/utils/toaster";
 import { SERVER_ERROR } from "@/config/errors";
+import UserHoverCard from "@/components/common/user_hover_card";
+import FollowBtn from "@/components/common/follow_btn";
+import Image from "next/image";
+import { User } from "@/types";
 const index = () => {
   const [groupName, setgroupName] = useState("");
   const [groupDescription, setgroupDescription] = useState("");
@@ -19,7 +23,7 @@ const index = () => {
     getHandler(URL)
       .then((res) => {
         if (res.statusCode === 200) {
-          setGroup(res.data.user);
+          setGroup(res.data.group);
           console.log(group);
 
           // setCoverPicView(`${USER_COVER_PIC_URL}/${res.data.user.coverPic}`);
@@ -40,21 +44,53 @@ const index = () => {
     getGroup();
   }, []);
 
+  interface UserProps {
+    user: User;
+
+    title?: string;
+  }
+  const AboutUser = ({
+    user,
+
+    title,
+  }: UserProps) => (
+    <div className="relative">
+      <div className="w-full  flex gap-2 items-center justify-between">
+        <div className="w-fit flex justify-start items-center gap-2 group">
+          <UserHoverCard user={user} title={title} />
+          {/* <Image
+            width={50}
+            height={50}
+            src={`${USER_PROFILE_PIC_URL}/${user.profilePic}`}
+            alt=""
+            className={`${
+              host ? "w-8 h-8" : "w-6 h-6"
+            } rounded-full cursor-pointer`}
+          /> */}
+          <div className={`w-fit text-base cursor-pointer`}>{user.name}</div>
+        </div>
+        <FollowBtn toFollowID={user.id} smaller={true} />
+      </div>
+    </div>
+  );
+
   return (
     <>
       <Header />
       <div className="pt-[4rem] h-[95vh] font-poppins justify-around items-center px-10 flex ">
         <div className="h-full w-[50%] px-3 ">
           <div className="h-[15%] flex justify-start items-center text-3xl">
-            Support Group Name
+            {group.title}
           </div>
-          <div className="h-[20%]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et dolorum
-            similique quod placeat qui amet labore optio fugit sunt vero soluta
-            facere doloremque deleniti magnam voluptatibus, nostrum quibusdam
-            cupiditate expedita!
+          <div className="h-[20%]">{group.description}</div>
+          <div className="h-[65%] ">
+            <p className="text-2xl border-b-2 border-black mb-2">Member List</p>
+            {group.memberships.map((membership, index) => (
+              <div key={index} className="py-1">
+                <AboutUser user={membership.user} />
+              </div>
+            ))}
           </div>
-          <div className="h-[65%]">Member list</div>
         </div>
         <div className="h-full w-[50%]">
           <div className="h-[10%] flex justify-start items-center text-2xl">

@@ -33,7 +33,7 @@ const EventCard = ({
     <Link
       href={`/events/${event.id}`}
       target="_blank"
-      className={`w-${size} font-poppins rounded-xl border-[1px] hover:shadow-xl transition-ease-out-500`}
+      className={`w-${size} font-poppins rounded-xl  border-[1px] hover:shadow-xl transition-ease-out-500`}
     >
       <div className="w-full relative group">
         <div className="flex gap-1 top-2 right-2 absolute bg-white text-gray-500 text-xxs px-2 py-1 rounded-lg">
@@ -51,7 +51,7 @@ const EventCard = ({
           blurDataURL={event.blurHash || "no-hash"}
         />
         {user.isModerator && (
-          <div className="flex gap-2 absolute opacity-0 group-hover:opacity-100 top-2 left-2 transition-ease-300">
+          <div className="flex gap-2  absolute opacity-0 group-hover:opacity-100 top-2 left-2 transition-ease-300">
             {
               <div
                 onClick={(el) => {
@@ -84,7 +84,7 @@ const EventCard = ({
           {event.organization.title}
         </div> */}
       </div>
-      <div className="w-full bg-white rounded-b-xl flex p-4">
+      <div className="w-full bg-mint rounded-b-xl flex p-4">
         <div className="w-1/6 flex items-start justify-start mt-1">
           <div className="w-fit flex flex-col items-end">
             <div

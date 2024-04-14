@@ -21,6 +21,7 @@ import { Plus } from "@phosphor-icons/react";
 import MainWrapper from "@/wrappers/main";
 // import { navbarOpenSelector } from "@/slices/feedSlice";
 import { event as initialEvent } from "@/types/initials";
+import Image from "next/image";
 import { CiCirclePlus } from "react-icons/ci";
 const index = () => {
   const user = useSelector(userSelector);
@@ -84,6 +85,15 @@ const index = () => {
   }, [window.location.search]);
   return (
     <MainWrapper>
+      <div className="fixed bottom-0 left-0">
+        <Image
+          src={"/threePeople.svg"}
+          width={1000}
+          height={1000}
+          alt="person"
+          className=" h-[15rem] w-auto"
+        />
+      </div>
       <div className="flex  font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
         <div className="h-full flex items-center text-6xl font-semibold">
           Events
@@ -102,7 +112,7 @@ const index = () => {
           </div>
         )}
       </div>
-      <div className="w-full flex flex-col gap-6 bg-threePeople-bg bg-no-repeat bg-right-bottom ">
+      <div className="w-full flex flex-col gap-6  ">
         {loading ? (
           <Loader />
         ) : (

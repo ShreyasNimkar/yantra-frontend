@@ -70,6 +70,15 @@ module.exports = {
         priority_high: "#fbbebe",
         priority_mid: "#fbf9be",
         priority_low: "#bffbbe",
+        deep_sea: "#26192b",
+        midnight_blue: "#51588c",
+        lavender_blush: "#c46fb2",
+        kinda_lilac: "#F7DBF0",
+
+        pale_lilac: "#e1c2eb",
+        mint: "#CDF0EA",
+        blue_bell: "#CAE9F5",
+        kinda_purple: "#E0DCF9",
       },
       backgroundColor: {
         backdrop: "#0000003f",

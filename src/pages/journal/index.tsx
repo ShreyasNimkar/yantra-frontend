@@ -59,7 +59,7 @@ const Index = () => {
   return (
     <MainWrapper>
       <div>
-        <div className="flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
+        <div className="  flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
           <div className="h-full flex items-center text-5xl font-semibold">
             My Journal
           </div>
@@ -83,8 +83,8 @@ const Index = () => {
         <Loader />
       ) : (
         <>
-          <p className="text-2xl">April 2024</p>
-          <div className="w-full h-full flex flex-col gap-3 px-10 justify-start items-start pt-3">
+          <p className="text-2xl  ">April 2024</p>
+          <div className="w-full border-b-2 border-black h-full flex flex-col gap-3 px-10 justify-start items-start pt-3">
             {pages.map((page) => {
               return (
                 <>
@@ -99,6 +99,7 @@ const Index = () => {
           </div>
           {showPage && (
             <PageComponent
+              setShowNewJournalOption={setShowNewJournalOption}
               page={clickedPage}
               show={showPage}
               setShow={setShowPage}

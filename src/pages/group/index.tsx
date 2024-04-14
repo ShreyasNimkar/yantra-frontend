@@ -65,9 +65,9 @@ const index = () => {
             <div>34/50 members</div>
             <div
               // onClick={handleSubmit}
-              className="relative inline-flex ml-5 mt-2 items-center justify-center p-4 px-10 py-1 mb-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group cursor-pointer"
+              className="relative inline-flex ml-5 mt-2 items-center justify-center p-4 px-10 py-1 mb-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-black rounded-full shadow-md group cursor-pointer"
             >
-              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-black group-hover:translate-x-0 ease">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -83,7 +83,7 @@ const index = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+              <span className="absolute flex items-center justify-center w-full h-full text-black transition-all duration-300 transform group-hover:translate-x-full ease">
                 Join
               </span>
               <span className="relative invisible">Join</span>

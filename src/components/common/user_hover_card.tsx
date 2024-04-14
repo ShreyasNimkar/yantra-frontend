@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import getIcon from "@/utils/funcs/get_icon";
+import { USER_PROFILE_PIC_URL } from "@/config/routes";
 
 interface Props {
   user: User;
@@ -15,14 +16,14 @@ interface Props {
 const UserHoverCard = ({ user, title, scaleTransition = false }: Props) => {
   return (
     <div
-      className={`w-2/3 bg-white flex flex-col gap-2 rounded-xl p-4 shadow-xl absolute -translate-y-3/4 -top-2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-full ${
+      className={`w-1/3 bg-white flex flex-col gap-2 rounded-xl p-4 shadow-xl absolute -translate-y-3/4 -top-2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-full ${
         scaleTransition && "scale-0 group-hover:scale-100"
       } -z-10 group-hover:z-50 transition-ease-500`}
     >
       <Image
         width={50}
         height={50}
-        // src={`${USER_PROFILE_PIC_URL}/${user.profilePic}`}
+        src={`${USER_PROFILE_PIC_URL}/${user.profilePic}`}
         alt=""
         className="w-12 h-12 rounded-full"
       />

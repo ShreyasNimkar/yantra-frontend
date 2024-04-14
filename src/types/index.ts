@@ -67,7 +67,7 @@ export interface Group {
   description: string;
   moderatorID: string;
   moderator: Moderator;
-  numberOfMembers: number;
+  noMembers: number;
   memberships: [GroupMembership];
 }
 export interface Journal {

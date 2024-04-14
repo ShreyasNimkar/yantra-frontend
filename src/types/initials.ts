@@ -94,7 +94,7 @@ export const group: Group = {
   description: "",
   moderatorID: "",
   moderator: moderator,
-  numberOfMembers: 0,
+  noMembers: 0,
   memberships: [initialGroupMembership],
 };
 

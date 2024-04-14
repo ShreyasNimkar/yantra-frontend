@@ -30,11 +30,11 @@ import Toaster from "@/utils/toaster";
 import Head from "next/head";
 import { resizeImage } from "@/utils/resize_image";
 import { setOnboarding } from "@/slices/feedSlice";
-import { Id } from "react-toastify";
 import { ReactSVG } from "react-svg";
 import ProgressBar from "@/components/onboarding/progress_bar";
 import UserCard from "@/components/onboarding/user_card";
 import DummyUserCard from "@/components/onboarding/dummy_user_card";
+import postHandler from "@/handlers/post_handler";
 
 const Onboarding = () => {
   const [clickedOnBuild, setClickedOnBuild] = useState(false);
@@ -116,7 +116,7 @@ const Onboarding = () => {
       dispatch(setOnboarding(true));
       dispatch(setOnboardingStatus(true));
 
-      window.location.replace("/group");
+      await handleCreateGroup();
     } else if (res.statusCode == 413) {
       Toaster.stopLoad(toaster, "Image too large", 0);
     } else {
@@ -126,6 +126,27 @@ const Onboarding = () => {
       }
     }
     setMutex(false);
+  };
+
+  const handleCreateGroup = async () => {
+    const toaster = Toaster.startLoad("Creating the Group");
+    const URL = `/group`;
+    const res = await postHandler(URL, {
+      title: groupName,
+      description: groupDescription,
+    });
+
+    if (res.statusCode === 201) {
+      Toaster.stopLoad(toaster, "Group Created", 1);
+      window.location.assign("/group");
+    } else if (res.statusCode == 413) {
+      Toaster.stopLoad(toaster, "Image too large", 0);
+    } else {
+      if (res.data.message) Toaster.stopLoad(toaster, res.data.message, 0);
+      else {
+        Toaster.stopLoad(toaster, SERVER_ERROR, 0);
+      }
+    }
   };
 
   const handleIncrementStep = () => {
@@ -148,9 +169,8 @@ const Onboarding = () => {
         setStep((prev) => prev + 1);
         break;
       case 6:
-        // if (links.length < 1) Toaster.error('Add at least 1 Link');
-        // else
-        setStep((prev) => prev + 1);
+        if (links.length < 1) Toaster.error("Add at least 1 Link");
+        else setStep((prev) => prev + 1);
         break;
       case 7:
         // if (clickedOnNewCollege) handleAddCollege();
@@ -228,9 +248,9 @@ const Onboarding = () => {
                     "Name",
                     "Tagline",
                     "Bio",
-                    "Info",
+                    "Specialities",
                     "Pictures",
-                    "Preferences",
+                    "Licenses",
                     "Location",
                     "Group",
                   ]}
@@ -547,7 +567,7 @@ const Onboarding = () => {
                     <div></div>
                   )}
                   <div className="w-fit flex items-center gap-2">
-                    {step == 5 || step == 6 ? (
+                    {step == 5 ? (
                       <div
                         onClick={handleIncrementStep}
                         className="w-fit text-lg py-2 font-medium px-4 shadow-md hover:bg-primary_comp hover:shadow-lg transition-ease-500 rounded-xl cursor-pointer"
@@ -607,6 +627,8 @@ const Onboarding = () => {
                   bio={bio}
                   profilePic={userPicView}
                   coverPic={userCoverPicView}
+                  tags={tags}
+                  links={links}
                 />
               </div>
             </div>

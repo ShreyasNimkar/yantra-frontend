@@ -1,7 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "@/components/Header";
 import GroupChat from "@/components/messaging/GroupChat";
+import { useState } from "react";
+import { group as initialGroup } from "@/types/initials";
+import getHandler from "@/handlers/get_handler";
+import Toaster from "@/utils/toaster";
+import { SERVER_ERROR } from "@/config/errors";
 const index = () => {
+  const [groupName, setgroupName] = useState("");
+  const [groupDescription, setgroupDescription] = useState("");
+  const [group, setGroup] = useState(initialGroup);
+  const [loading, setLoading] = useState(true);
+  const getGroup = () => {
+    // const [coverPicView, setCoverPicView] = useState(
+    //   `${USER_COVER_PIC_URL}/${user.coverPic}`
+    // );
+    const URL = `/group/my`;
+    getHandler(URL)
+      .then((res) => {
+        if (res.statusCode === 200) {
+          setGroup(res.data.user);
+          console.log(group);
+
+          // setCoverPicView(`${USER_COVER_PIC_URL}/${res.data.user.coverPic}`);
+          setLoading(false);
+        } else {
+          if (res.data.message)
+            Toaster.error(res.data.message, "error_toaster");
+          else {
+            Toaster.error(SERVER_ERROR, "error_toaster");
+          }
+        }
+      })
+      .catch((err) => {
+        Toaster.error(SERVER_ERROR, "error_toaster");
+      });
+  };
+  useEffect(() => {
+    getGroup();
+  }, []);
+
   return (
     <>
       <Header />

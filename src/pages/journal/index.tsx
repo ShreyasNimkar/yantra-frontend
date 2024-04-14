@@ -87,11 +87,13 @@ const Index = () => {
           <div className="w-full h-full flex flex-col gap-3 px-10 justify-start items-start pt-3">
             {pages.map((page) => {
               return (
-                <PageBox
-                  page={page}
-                  setClickedPage={setClickedPage}
-                  setShowPage={setShowPage}
-                />
+                <>
+                  <PageBox
+                    page={page}
+                    setClickedPage={setClickedPage}
+                    setShowPage={setShowPage}
+                  />
+                </>
               );
             })}
           </div>

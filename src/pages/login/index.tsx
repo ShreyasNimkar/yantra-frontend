@@ -109,28 +109,7 @@ const Login = () => {
             className="w-3/5 max-md:w-full flex flex-col items-center gap-6"
           >
             <div className="flex flex-col gap-2 text-center">
-              <div className="text-2xl font-semibold">
-                Let&apos;s Get Back In
-              </div>
-              <div className="text-gray-400">
-                Time to pick up where you left ✌️
-              </div>
-            </div>
-            <div
-              onClick={handleGoogleLogin}
-              className="w-full flex gap-4 justify-center cursor-pointer shadow-md  border-[#D4D9E1] hover:bg-[#F2F2F2] active:bg-[#EDEDED] border-2 rounded-xl px-4 py-2"
-            >
-              <div>
-                <ReactSVG src="/assets/google.svg" />
-              </div>
-              <div className="font-medium">Log in with Google</div>
-            </div>
-            <div className="w-full flex items-center justify-between">
-              <div className="w-[25%] h-[1px] bg-gray-200"></div>
-              <div className="w-[50%] text-center text-sm max-lg:text-xs text-gray-400">
-                or continue with username
-              </div>
-              <div className="w-[25%] h-[1px] bg-gray-200"></div>
+              <div className="text-2xl font-semibold">Welcome Back !</div>
             </div>
 
             <div className="w-full flex flex-col gap-4">
@@ -192,7 +171,7 @@ const Login = () => {
               </div>
             </div>
           </form>
-          <div className="w-3/4 max-lg:w-full text-[12px] text-center text-gray-400">
+          <div className="w-3/4 max-lg:w-full text-[12px] text-center text-transparent text-gray-400">
             By clicking “Continue” above, you acknowledge that you have read and
             understood, and agree to website&apos;s{" "}
             <span className="underline underline-offset-2 font-medium cursor-pointer">

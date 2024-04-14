@@ -176,7 +176,7 @@ const SignUp = () => {
         ) : (
           <></>
         )}
-        <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-between items-center">
+        <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">
           <div className="w-full flex justify-start items-center">
             <ReactSVG src="/onboarding_logo.svg" />
           </div>
@@ -201,13 +201,13 @@ const SignUp = () => {
               </div>
               <div className="font-medium">Sign up with Google</div>
             </div> */}
-            <div className="w-full flex items-center justify-between">
+            {/* <div className="w-full flex items-center justify-between">
               <div className="w-[25%] h-[1px] bg-gray-200"></div>
               <div className="w-[50%] text-center text-sm max-lg:text-xs text-gray-400">
                 or continue with email
               </div>
               <div className="w-[25%] h-[1px] bg-gray-200"></div>
-            </div>
+            </div> */}
 
             <div className="w-full flex flex-col gap-4">
               <div className="w-full flex justify-between gap-4">
@@ -258,9 +258,12 @@ const SignUp = () => {
                   <div className="flex items-center gap-2 font-medium">
                     <div>Password</div>
 
-                    <div onClick={() => setClickedOnStrongPassInfo(true)}>
-                      infodiv
-                    </div>
+                    <Info
+                      onClick={() => setClickedOnStrongPassInfo(true)}
+                      className="cursor-pointer"
+                      size={18}
+                      weight="light"
+                    />
                   </div>
                   <div className="w-full relative">
                     <input
@@ -272,11 +275,19 @@ const SignUp = () => {
                       className="w-full bg-white p-2 rounded-xl focus:outline-none focus:bg-white border-2 text-gray-400 pr-10"
                     />
                     {showPassword ? (
-                      <div onClick={() => setShowPassword(false)}>eyediv</div>
+                      <Eye
+                        onClick={() => setShowPassword(false)}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                        size={20}
+                        weight="regular"
+                      />
                     ) : (
-                      <div onClick={() => setShowPassword(true)}>
-                        eyecloseddiv
-                      </div>
+                      <EyeClosed
+                        onClick={() => setShowPassword(true)}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                        size={20}
+                        weight="regular"
+                      />
                     )}
                   </div>
                 </div>
@@ -291,13 +302,19 @@ const SignUp = () => {
                       className="w-full bg-white p-2 rounded-xl focus:outline-none focus:bg-white border-2 text-gray-400 pr-10"
                     />
                     {showConfirmPassword ? (
-                      <div onClick={() => setShowConfirmPassword(false)}>
-                        eyediv
-                      </div>
+                      <Eye
+                        onClick={() => setShowConfirmPassword(false)}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                        size={20}
+                        weight="regular"
+                      />
                     ) : (
-                      <div onClick={() => setShowConfirmPassword(true)}>
-                        eyecloseddiv
-                      </div>
+                      <EyeClosed
+                        onClick={() => setShowConfirmPassword(true)}
+                        className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
+                        size={20}
+                        weight="regular"
+                      />
                     )}
                   </div>
                 </div>
@@ -361,17 +378,6 @@ const SignUp = () => {
               </div>
             </div>
           </form>
-          <div className="w-3/4 max-lg:w-full text-[12px] text-center text-gray-400">
-            By clicking “Continue” above, you acknowledge that you have read and
-            understood, and agree to Epione&apos;s{" "}
-            <span className="underline underline-offset-2 font-medium cursor-pointer">
-              Term & Conditions
-            </span>{" "}
-            and{" "}
-            <span className="underline underline-offset-2 font-medium cursor-pointer">
-              Privacy Policy.
-            </span>
-          </div>
         </div>
         <div className="w-[55%] max-lg:hidden min-h-screen bg-onboarding bg-cover"></div>
       </div>

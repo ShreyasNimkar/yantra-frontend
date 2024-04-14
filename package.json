@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dytesdk/react-ui-kit": "^1.66.1",
+    "@dytesdk/react-web-core": "^1.36.4",
     "@phosphor-icons/react": "^2.0.10",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",

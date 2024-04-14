@@ -66,7 +66,8 @@ const EditEvent = ({ setShow, event, setEvents }: Props) => {
 
     const formData = new FormData();
 
-    if (tagline != event.tagline) formData.append("tagline", tagline);
+    if (tagline && tagline != event.tagline)
+      formData.append("tagline", tagline);
     if (description != event.description)
       formData.append("description", description);
     if (isArrEdited(tags, event.tags))
@@ -143,7 +144,7 @@ const EditEvent = ({ setShow, event, setEvents }: Props) => {
           <CoverPic
             setSelectedFile={setImage}
             type="Event"
-            initialImage={event.coverPic}
+            initialImage={event.coverPic || ""}
           />
         </div>
         <div className="w-full flex flex-col justify-between gap-2">
@@ -167,7 +168,7 @@ const EditEvent = ({ setShow, event, setEvents }: Props) => {
 
             <div>
               <div className="text-xs ml-1 font-medium uppercase text-gray-500">
-                Event Tagline ({tagline.trim().length}/50)
+                Event Tagline ({tagline && tagline.trim().length}/50)
               </div>
               <input
                 value={tagline}

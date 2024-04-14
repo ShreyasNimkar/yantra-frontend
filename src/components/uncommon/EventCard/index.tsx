@@ -42,7 +42,7 @@ const EventCard = ({
         <Image
           width={200}
           height={200}
-          src={`${EVENT_PIC_URL}/${event.coverPic}`}
+          src={`${EVENT_PIC_URL}/${event.coverPic || ""}`}
           alt=""
           className={`w-full ${
             size == 96 ? "h-56" : size == 64 ? "h-[160px]" : "h-[180px]"

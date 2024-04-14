@@ -16,6 +16,8 @@ import { EVENT_PIC_URL, USER_PROFILE_PIC_URL } from "@/config/routes";
 import Link from "next/link";
 import moment from "moment";
 import Loader from "@/components/common/loader";
+import MainWrapper from "@/wrappers/main";
+import { MapPin } from "@phosphor-icons/react";
 interface Props {
   id: string;
 }
@@ -29,7 +31,25 @@ const EventPage = ({ id }: Props) => {
   const [clickedOnReport, setClickedOnReport] = useState(false);
   const user = useSelector(userSelector);
 
-  const dispatch = useDispatch();
+  const handleJoinEvent = async () => {
+    await getHandler("/event/token/" + event.id)
+      .then((res) => {
+        if (res.statusCode === 200) {
+          const authToken = res.data.authToken;
+          window.location.assign("/events/meet/" + authToken);
+        } else {
+          if (res.data.message)
+            Toaster.error(res.data.message, "error_toaster");
+          else {
+            Toaster.error(SERVER_ERROR, "error_toaster");
+          }
+        }
+      })
+      .catch((err) => {
+        Toaster.error(SERVER_ERROR, "error_toaster");
+      });
+  };
+
   const getEvent = () => {
     const URL = `/event/${id}`;
     getHandler(URL)
@@ -105,11 +125,11 @@ const EventPage = ({ id }: Props) => {
       <Image
         width={500}
         height={280}
-        src={`${EVENT_PIC_URL}/${event.coverPic}`}
+        src={`${EVENT_PIC_URL}/${event?.coverPic || ""}`}
         alt="Event Picture"
         className="w-full object-cover rounded-xl"
         placeholder="blur"
-        blurDataURL={event.blurHash || "no-hash"}
+        blurDataURL={event?.blurHash || "no-hash"}
       />
       {/* <LowerEvent
         event={event}
@@ -144,6 +164,19 @@ const EventPage = ({ id }: Props) => {
         >
           Report Event
         </div>
+      </div>
+      {moment(event.startTime).isAfter(moment()) &&
+        moment(event.endTime).isBefore(moment()) && (
+          <div className="w-full flex items-center justify-center">
+            Join the Event
+          </div>
+        )}
+
+      <div
+        onClick={handleJoinEvent}
+        className="w-full font-semibold bg-primary_comp hover:bg-primary_comp_hover py-2 rounded-md flex items-center justify-center cursor-pointer transition-ease-300"
+      >
+        Join the Event
       </div>
     </div>
   );
@@ -200,7 +233,7 @@ const EventPage = ({ id }: Props) => {
         <div className="text-sm font-medium text-gray-500">LOCATION</div>
         <div className="flex items-center gap-2">
           <div className="w-12 h-12 border-gray-100 border-4 flex-center p-2 rounded-xl">
-            {/* <MapPin size={20} /> */}
+            <MapPin size={20} />
           </div>
           <div>{event.location}</div>
         </div>
@@ -231,9 +264,8 @@ const EventPage = ({ id }: Props) => {
     </div>
   );
   return (
-    <>
-      <Header />
-      <div className="w-full font-poppins py-12 px-20 max-md:p-2 flex flex-col transition-ease-out-500 font-primary">
+    <MainWrapper>
+      <div className="w-full px-20 max-md:p-2 flex flex-col transition-ease-out-500 font-primary">
         {loading ? (
           <Loader />
         ) : (
@@ -245,11 +277,12 @@ const EventPage = ({ id }: Props) => {
           </div>
         )}
       </div>
-    </>
+    </MainWrapper>
   );
 };
 
 export default EventPage;
+
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { id } = context.query;
 

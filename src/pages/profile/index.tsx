@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import Navbar from "@/components/Navbar";
 import Header from "@/components/Header";
-
 import LineGraph from "@/components/charts/lineGraph";
-import { PolarGraph } from "@/components/charts/polarGraph";
 import getHandler from "@/handlers/get_handler";
 import { user as initialUser } from "@/types/initials";
 import { useState } from "react";
 import Toaster from "@/utils/toaster";
 import { SERVER_ERROR } from "@/config/errors";
+import Image from "next/image";
+import { USER_PROFILE_PIC_URL } from "@/config/routes";
+
 const index = () => {
   const [user, setUser] = useState(initialUser);
   const [tagline, setTagline] = useState("");
@@ -51,15 +51,24 @@ const index = () => {
     <>
       <Header />
       <div className="pt-[4rem] font-poppins px-10">
-        <div className="h-[35vh]  flex">
-          <div className="h-full flex justify-around items-center w-[30%]">
-            <div className="w-[10rem] h-[10rem] bg-zinc-600 rounded-full"></div>
+        <div className="flex py-12 gap-4">
+          <div className="h-full flex justify-around items-center">
+            <Image
+              width={200}
+              height={200}
+              src={`${USER_PROFILE_PIC_URL}/${user.profilePic}`}
+              alt=""
+              className="w-32 h-32 rounded-full"
+            />
           </div>
-          <div className="h-full w-[70%] flex flex-col justify-start items-start pt-3">
-            <div className="text-3xl h-[15%]">{user.name}</div>
-            <div className="text-base ">@{user.username}</div>
-            <div className="text-base ">{user.bio}</div>
-            <div className="text-base ">{user.tags}</div>
+          <div className="h-full flex flex-col gap-4 justify-start items-start pt-3">
+            <div>
+              <div className="text-3xl h-[15%]">{user.name}</div>
+              <div className="text-base">@{user.username}</div>
+            </div>
+
+            <div className="text-base">{user.bio}</div>
+            <div className="text-base">{user.tags}</div>
           </div>
         </div>
         <div className="h-[55vh]  flex">

@@ -38,7 +38,7 @@ const Index = () => {
             pagesData.length == 0
           )
             setShowNewJournalOption(true);
-
+          // else setClickedPage(pagesData[0]);
           setLoading(false);
         } else {
           if (res.data.message)
@@ -94,36 +94,32 @@ const Index = () => {
           <Loader />
         ) : (
           <>
-            <p className="text-2xl pb-2 border-b-2 border-black ">April 2024</p>
-            <div className="w-full  h-full flex flex-col gap-3 px-10 justify-start items-start pt-3 ">
+            <p className="text-2xl pb-2 border-black ">April 2024</p>
+            <div className="w-full  h-full flex flex-col gap-3 justify-start items-start pt-3 ">
               {pages.map((page) => {
                 return (
-                  <>
-                    <PageBox
-                      page={page}
-                      setClickedPage={setClickedPage}
-                      setShowPage={setShowPage}
-                    />
-                  </>
+                  <PageBox
+                    page={page}
+                    setClickedPage={setClickedPage}
+                    setShowPage={setShowPage}
+                  />
                 );
               })}
             </div>
-            {showPage && (
-              <PageComponent
-                setShowNewJournalOption={setShowNewJournalOption}
-                page={clickedPage}
-                show={showPage}
-                setShow={setShowPage}
-                setPages={setPages}
-              />
-            )}
 
+            <PageComponent
+              setShowNewJournalOption={setShowNewJournalOption}
+              page={clickedPage}
+              show={showPage}
+              setShow={setShowPage}
+              setPages={setPages}
+            />
             {showPage && (
               <div
                 onClick={() => {
                   setShowPage(false);
                 }}
-                className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-backdrop backdrop-blur-sm opacity-40 transition-all ease-in duration-300"
+                className="fixed top-0 left-0 w-full h-full flex justify-center items-center animate-fade_half transition-all ease-in duration-300"
               ></div>
             )}
           </>

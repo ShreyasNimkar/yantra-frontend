@@ -209,16 +209,81 @@ const Onboarding = () => {
             src="/pattern.svg"
           />
         )}
+        {/* onClick={() => handleJoinGroup(group.id)} */}
         {chooseGroups ? (
-          <div>
-            {groups.map((group) => (
-              <div onClick={() => handleJoinGroup(group.id)}>{group.title}</div>
-            ))}
-          </div>
+          <>
+            <div className="fixed bottom-0 right-0">
+              <Image
+                src={"/sharingPeople.svg"}
+                width={1000}
+                height={1000}
+                alt="person"
+                className=" h-[15rem] w-auto"
+              />
+            </div>
+            <div className="fixed bottom-[30%] left-[1%]">
+              <Image
+                src={"/threePeople.svg"}
+                width={1000}
+                height={1000}
+                alt="person"
+                className=" h-[15rem] w-auto"
+              />
+            </div>
+            <div className="h-[10vh] font-poppins flex justify-around items-center text-3xl font-semibold">
+              Choose your first support group
+            </div>
+            <div className="h-[6vh] font-poppins flex justify-around items-center  font-semibold">
+              Begin your journey with Epione ✨
+            </div>
+
+            <div className="h-max font-poppins w-full flex flex-col pt-5 justify-center gap-2 items-center">
+              {groups.map((group) => (
+                <div className="w-[60%] h-[20vh] border-[1px] flex p-3 rounded-lg shadow-xl">
+                  <div className="w-[80%] h-full">
+                    <div>
+                      <span className="text-2xl pr-4">{group.title}</span>
+                      <span>{group.numberOfMembers}/50 members</span>
+                    </div>
+                    <div className="line-clamp-3">{group.description}</div>
+
+                    <div>{group.location}asd</div>
+                  </div>
+                  <div className="w-[20%] h-full flex justify-center items-center">
+                    <div
+                      onClick={() => handleJoinGroup(group.id)}
+                      className="relative inline-flex ml-5 mt-2 items-center justify-center p-4 px-10 py-1 mb-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-black rounded-full shadow-md group cursor-pointer"
+                    >
+                      <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-black group-hover:translate-x-0 ease">
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          ></path>
+                        </svg>
+                      </span>
+                      <span className="absolute flex items-center justify-center w-full h-full text-black transition-all duration-300 transform group-hover:translate-x-full ease">
+                        Join
+                      </span>
+                      <span className="relative invisible">Join</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
         ) : (
           <>
             {!clickedOnBuild ? (
-              <div className="glassMorphism animate-fade_1 page w-fit max-md:w-[90%] h-56 max-md:h-72 px-8 py-10 font-primary flex flex-col justify-between rounded-lg shadow-xl hover:shadow-2xl transition-ease-300 absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
+              <div className="glassMorphism font-dmSans animate-fade_1 page w-fit max-md:w-[90%] h-56 max-md:h-72 px-8 py-10 font-primary flex flex-col justify-between rounded-lg shadow-xl hover:shadow-2xl transition-ease-300 absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2">
                 <div className="flex flex-col gap-2">
                   <div className="text-5xl font-bold max-md:leading-tight">
                     Welcome to{" "}
@@ -248,7 +313,7 @@ const Onboarding = () => {
                 </div>
               </div>
             ) : (
-              <div className="w-full h-full flex justify-between items-center max-md:px-4 font-primary ">
+              <div className="w-full font-dmSans h-full flex justify-between items-center max-md:px-4 font-primary ">
                 <div className="w-3/5 max-lg:w-full h-full p-12 max-md:px-2 font-primary flex flex-col gap-16 items-center border-r-2 max-md:border-r-0 border-primary_comp">
                   <div className="w-full flex justify-start items-center gap-1">
                     <ReactSVG src="/onboarding_logo.svg" />
@@ -269,7 +334,7 @@ const Onboarding = () => {
                       ]}
                     />
                   </div>
-                  <div className="w-5/6 max-md:w-full max-md:max-h-full flex flex-col gap-4 backdrop-blur-xl rounded-xl shadow-xl p-8 mt-8 animate-fade_half">
+                  <div className="w-5/6 font-dmSans max-md:w-full max-md:max-h-full flex flex-col gap-4 backdrop-blur-xl rounded-xl shadow-xl p-8 mt-8 animate-fade_half">
                     <div className="w-full flex items-center justify-between flex-wrap">
                       <div
                         className={`${
@@ -320,7 +385,7 @@ const Onboarding = () => {
                         }}
                       >
                         <input
-                          className="w-full bg-[#ffffff40] border-[1px] text-lg max-md:text-base border-black rounded-lg p-2 focus:outline-none"
+                          className="w-full font-dmSans bg-[#ffffff40] border-[1px] text-lg max-md:text-base border-black rounded-lg p-2 focus:outline-none"
                           type="text"
                           maxLength={25}
                           value={name}
@@ -364,10 +429,12 @@ const Onboarding = () => {
                       and help us build your recommendations!
                     </div> */}
                         <div>
-                          Your Age:{" "}
+                          Your Age:
+                          <br />
                           <input
                             value={age}
                             type="number"
+                            className="border-2 border-black rounded-xl p-3 cursor-pointer"
                             onChange={(el) => {
                               const num = Number(el.target.value);
                               if (num < 80) setAge(num);
@@ -375,16 +442,16 @@ const Onboarding = () => {
                           />
                         </div>
                         <div>
-                          Your Gender{" "}
+                          Your Gender:{" "}
                           <select
                             onChange={(el) => setGender(el.target.value)}
                             value={gender}
-                            className="w-1/2 max-lg:w-full h-12 border-[1px] border-primary_btn  dark:border-dark_primary_btn dark:text-white bg-primary_comp dark:bg-[#10013b30] focus:outline-nonetext-sm rounded-lg block p-2"
+                            className="w-1/2 max-lg:w-full h-12 border-[1px] border-primary_btn  dark:border-dark_primary_btn dark:text-white cursor-pointer dark:bg-[#10013b30] focus:outline-nonetext-sm rounded-lg block p-2"
                           >
                             {["Male", "Female"].map((c, i) => {
                               return (
                                 <option
-                                  className="bg-primary_comp_hover dark:bg-[#10013b30]"
+                                  className=" dark:bg-[#10013b30]"
                                   key={i}
                                   value={c}
                                 >

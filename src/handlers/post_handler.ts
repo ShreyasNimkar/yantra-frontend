@@ -1,9 +1,13 @@
-import configuredAxios from '@/config/axios';
+import configuredAxios from "@/config/axios";
 
-const postHandler = async (URL: string, formData: object, type: string = 'application/json') => {
+const postHandler = async (
+  URL: string,
+  formData: object,
+  type: string = "application/json"
+) => {
   const headers = {
-    'Content-Type': type,
-    Authorization: '',
+    "Content-Type": type,
+    Authorization: "",
   };
 
   const response: any = {
@@ -14,14 +18,14 @@ const postHandler = async (URL: string, formData: object, type: string = 'applic
 
   await configuredAxios
     .post(URL, formData, { headers })
-    .then(res => {
+    .then((res) => {
       response.status = 1;
       response.data = res.data;
       response.statusCode = res.status;
     })
-    .catch(err => {
+    .catch((err) => {
       response.status = 0;
-      response.data = err.response?.data || '';
+      response.data = err.response?.data || "";
       response.statusCode = 500;
     });
   return response;

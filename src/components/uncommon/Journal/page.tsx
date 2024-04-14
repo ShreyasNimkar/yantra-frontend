@@ -3,7 +3,7 @@ import patchHandler from "@/handlers/patch_handler";
 import postHandler from "@/handlers/post_handler";
 import { Page as PageType } from "@/types";
 import Toaster from "@/utils/toaster";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import BuildButton from "@/components/buttons/build_btn";
 import EmojiScale from "@/components/uncommon/EmojiScale";
@@ -15,6 +15,11 @@ interface Props {
   setPages: React.Dispatch<React.SetStateAction<PageType[]>>;
 }
 
+interface Emotion {
+  type: string;
+  score: number;
+}
+
 const Page = ({
   setShowNewJournalOption,
   page,
@@ -24,6 +29,33 @@ const Page = ({
 }: Props) => {
   const [title, setTitle] = useState(page ? page.title : "");
   const [content, setContent] = useState(page ? page.content : "");
+  const [NERs, setNERs] = useState<string[]>([]);
+  const [Emotions, setEmotions] = useState<Emotion[]>([]);
+
+  const getNREs = async () => {
+    const res = await postHandler("/journal/ner", {
+      content,
+    });
+
+    setNERs(res.data.NERs);
+
+    const res2 = await postHandler("/journal/emotion", {
+      content,
+    });
+
+    const emotions = res2.data.emotions;
+    const scores = res2.data.scores;
+
+    setEmotions([
+      { type: emotions[0], score: Math.round(scores[0] * 100) / 100 },
+      { type: emotions[1], score: Math.round(scores[1] * 100) / 100 },
+      { type: emotions[2], score: Math.round(scores[2] * 100) / 100 },
+    ]);
+  };
+
+  useEffect(() => {
+    getNREs();
+  }, [content]);
 
   const handleSubmit = async () => {
     if (title.trim() == "") {
@@ -100,7 +132,21 @@ const Page = ({
         ></textarea>
       </div>
 
-      <div className="w-full flex flex-col gap-4">
+      <div className="w-full flex flex-wrap gap-2">
+        {Emotions &&
+          Emotions.map((el) => (
+            <div className="w-fit bg-orange-100 rounded-2xl px-3 py-1 capitalize">
+              {el.type} {el.score}%
+            </div>
+          ))}
+
+        {NERs &&
+          NERs.map((el) => (
+            <div className="w-fit bg-violet-300 rounded-lg px-2 py-1">{el}</div>
+          ))}
+      </div>
+
+      <div className="w-full flex flex-col gap-4 pt-8">
         <div className="h-[10%] flex justify-around flex-col gap-2 items-center">
           <div>Tell us how you feel right now ?</div>
           <EmojiScale />

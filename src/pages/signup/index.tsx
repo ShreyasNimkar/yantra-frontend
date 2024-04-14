@@ -26,6 +26,7 @@ import StrongPassInfo from "@/components/common/strong_pass_info";
 import RegistrationButton from "@/components/buttons/registration_btn";
 import { Boxes } from "@/components/common/Background";
 import { cn } from "@/utils/cn";
+
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -183,7 +184,7 @@ const SignUp = () => {
         <div className="w-[100%]  max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">
           <form
             onSubmit={handleSubmit}
-            className="w-[35%] absolute bg-white rounded-lg border-2 border-black px-10 py-10 max-md:w-full flex flex-col items-center gap-6"
+            className="w-[35%] absolute bg-[#ffffffdd] rounded-lg border-2 border-black px-10 py-10 max-md:w-full flex flex-col items-center gap-6"
           >
             <div className="">
               <Image

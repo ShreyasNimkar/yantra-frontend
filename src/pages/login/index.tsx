@@ -111,7 +111,7 @@ const Login = () => {
         <div className="w-[100%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex  justify-around items-center ">
           <form
             onSubmit={handleSubmit}
-            className="w-[35%] px-10 py-10 bg-white absolute border-2 border-black rounded-xl max-md:w-full flex flex-col items-center gap-6"
+            className="w-[35%] px-10 py-10 bg-[#ffffffdd] absolute border-2 border-black rounded-xl max-md:w-full flex flex-col items-center gap-6"
           >
             <div className="">
               <Image

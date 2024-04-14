@@ -141,7 +141,7 @@ interface Props {
 
 const GroupCard = ({ group }: Props) => {
   return (
-    <div className="h-[15%] flex justify-between items-center border-b-[1px] hover:bg-[#0b0b0b07]">
+    <div className="h-[15%] flex justify-between items-center border-b-[1px] hover:bg-[#0b0b0b07] cursor-default px-2">
       <div>
         <div className="text-2xl font-medium">{group.title}</div>
         <div>{group.description}</div>

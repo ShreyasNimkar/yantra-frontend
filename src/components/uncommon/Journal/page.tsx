@@ -82,7 +82,7 @@ const Page = ({
         </div>
         <textarea
           id="textarea_id"
-          className="w-full bg-transparent text-center rounded-lg p-1 pt-8 text-4xl font-medium flex justify-center items-center focus:outline-none"
+          className="w-full bg-transparent text-center rounded-lg p-1 pt-8 text-5xl font-medium flex justify-center items-center focus:outline-none"
           value={title}
           onChange={(el) => setTitle(el.target.value)}
           placeholder="Untitled"

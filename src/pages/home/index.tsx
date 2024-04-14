@@ -98,7 +98,7 @@ const Home = () => {
               }}
               className="flex items-center justify-end text-center"
             >
-              <p className="cursor-pointer">Post &nbsp;</p>
+              <p className="cursor-pointer text-lg">Post &nbsp;</p>
               <CiCirclePlus size={25} className="cursor-pointer" />
             </div>
 
@@ -109,7 +109,7 @@ const Home = () => {
                 }}
                 className="flex items-center justify-end text-center"
               >
-                <p className="cursor-pointer">Poll &nbsp;</p>
+                <p className="cursor-pointer text-lg">Poll &nbsp;</p>
                 <CiCirclePlus size={25} className="cursor-pointer" />
               </div>
             )}
@@ -121,7 +121,7 @@ const Home = () => {
                 }}
                 className="flex items-center justify-end text-center"
               >
-                <p className="cursor-pointer">Announcement &nbsp;</p>
+                <p className="cursor-pointer text-lg">Announcement &nbsp;</p>
                 <CiCirclePlus size={25} className="cursor-pointer" />
               </div>
             )}

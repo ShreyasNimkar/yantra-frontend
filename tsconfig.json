@@ -22,7 +22,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/uncommon/Post"
+    "src/components/uncommon/Post",
+    "src/components/common/background"
   ],
   "exclude": ["node_modules"]
 }

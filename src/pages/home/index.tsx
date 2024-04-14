@@ -91,40 +91,41 @@ const Home = () => {
           <div className="h-full flex items-center text-6xl font-semibold">
             Feed
           </div>
+          <div className="h-full flex justify-end items-center gap-10 pr-10">
+            <div
+              onClick={() => {
+                setClickedOnNewPost(true);
+              }}
+              className="flex items-center justify-end text-center"
+            >
+              <p className="cursor-pointer">Post &nbsp;</p>
+              <CiCirclePlus size={25} className="cursor-pointer" />
+            </div>
 
-          <div
-            onClick={() => {
-              setClickedOnNewPost(true);
-            }}
-            className="flex items-center justify-end text-center"
-          >
-            <p className="cursor-pointer">Upload a post &nbsp;</p>
-            <CiCirclePlus size={25} className="cursor-pointer" />
+            {user.isModerator && (
+              <div
+                onClick={() => {
+                  setClickedOnNewPoll(true);
+                }}
+                className="flex items-center justify-end text-center"
+              >
+                <p className="cursor-pointer">Poll &nbsp;</p>
+                <CiCirclePlus size={25} className="cursor-pointer" />
+              </div>
+            )}
+
+            {user.isModerator && (
+              <div
+                onClick={() => {
+                  setClickedOnNewAnnouncement(true);
+                }}
+                className="flex items-center justify-end text-center"
+              >
+                <p className="cursor-pointer">Announcement &nbsp;</p>
+                <CiCirclePlus size={25} className="cursor-pointer" />
+              </div>
+            )}
           </div>
-
-          {user.isModerator && (
-            <div
-              onClick={() => {
-                setClickedOnNewPoll(true);
-              }}
-              className="flex items-center justify-end text-center"
-            >
-              <p className="cursor-pointer">Upload a poll &nbsp;</p>
-              <CiCirclePlus size={25} className="cursor-pointer" />
-            </div>
-          )}
-
-          {user.isModerator && (
-            <div
-              onClick={() => {
-                setClickedOnNewAnnouncement(true);
-              }}
-              className="flex items-center justify-end text-center"
-            >
-              <p className="cursor-pointer">Upload an announcement &nbsp;</p>
-              <CiCirclePlus size={25} className="cursor-pointer" />
-            </div>
-          )}
         </div>
 
         {loading ? (

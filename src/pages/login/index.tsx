@@ -22,6 +22,10 @@ import { SERVER_ERROR } from "@/config/errors";
 import Link from "next/link";
 import RegistrationButton from "@/components/buttons/registration_btn";
 
+import { Boxes } from "@/components/common/Background";
+import { cn } from "@/utils/cn";
+import { Eye, EyeClosed } from "@phosphor-icons/react";
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -97,19 +101,27 @@ const Login = () => {
 
   return (
     <>
+      <Boxes />
+
       <Head>
         <title>Login | Website </title>
       </Head>
-      {/* bg-peopleBox-bg bg-no-repeat bg-cover */}
+
       <div className="h-full flex ">
-        <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex flex-col justify-between items-center">
-          <div className="w-full flex justify-between items-center">
-            <ReactSVG src="/onboarding_logo.svg" />
-          </div>
+        <div className="w-[100%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex  justify-around items-center ">
           <form
             onSubmit={handleSubmit}
-            className="w-3/5 max-md:w-full flex flex-col items-center gap-6"
+            className="w-[35%] px-10 py-10 bg-white absolute border-2 border-black rounded-xl max-md:w-full flex flex-col items-center gap-6"
           >
+            <div className="">
+              <Image
+                alt="logo"
+                src={"/LogoBlack.svg"}
+                width={1000}
+                height={1000}
+                className="h-[5vh]"
+              />
+            </div>
             <div className="flex flex-col gap-2 text-center">
               <div className="text-2xl font-semibold">Welcome Back !</div>
             </div>
@@ -136,7 +148,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     className="w-full bg-white p-2 rounded-xl focus:outline-none focus:bg-white border-2 text-gray-400 pr-10"
                   />
-                  {/* {showPassword ? (
+                  {showPassword ? (
                     <Eye
                       onClick={() => setShowPassword(false)}
                       className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer"
@@ -150,7 +162,7 @@ const Login = () => {
                       size={20}
                       weight="regular"
                     />
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>
@@ -173,26 +185,6 @@ const Login = () => {
               </div>
             </div>
           </form>
-          <div className="w-3/4 max-lg:w-full text-[12px] text-center text-transparent text-gray-400">
-            By clicking “Continue” above, you acknowledge that you have read and
-            understood, and agree to website&apos;s{" "}
-            <span className="underline underline-offset-2 font-medium cursor-pointer">
-              Term & Conditions
-            </span>{" "}
-            and{" "}
-            <span className="underline underline-offset-2 font-medium cursor-pointer">
-              Privacy Policy.
-            </span>
-          </div>
-        </div>
-        <div className="w-[55%] h-[100%]">
-          <Image
-            alt=""
-            height={1000}
-            width={1000}
-            src={"/peopleBox.png"}
-            className="h-[100vh] object-cover"
-          />
         </div>
       </div>
     </>

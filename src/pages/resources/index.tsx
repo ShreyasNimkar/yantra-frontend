@@ -88,9 +88,7 @@ const index = () => {
               }}
               className=" w-[50%] h-full flex items-center justify-end text-center"
             >
-              <p className="cursor-pointer">
-                To upload a file, click here &nbsp;
-              </p>
+              <p className="cursor-pointer">Create Bucket&nbsp;</p>
               <CiCirclePlus size={25} className="cursor-pointer" />
             </div>
           )}

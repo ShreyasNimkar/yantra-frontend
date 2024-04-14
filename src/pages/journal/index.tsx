@@ -57,67 +57,69 @@ const Index = () => {
   }, []);
 
   return (
-    <MainWrapper>
-      <div>
-        <div className="  flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
-          <div className="h-full flex items-center text-5xl font-semibold">
-            My Journal
+    <div className="bg-singlePerson-bg bg-no-repeat bg-right-bottom ">
+      <MainWrapper>
+        <div>
+          <div className="  flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
+            <div className="h-full flex items-center text-5xl font-semibold">
+              My Journal
+            </div>
+            {showNewJournalOption && (
+              <div className="flex flex-col h-full justify-center items-center">
+                <div
+                  onClick={() => {
+                    setClickedPage(undefined);
+                    setShowPage(true);
+                  }}
+                  className="flex justify-around cursor-pointer"
+                >
+                  <p>To vent your heart out today, click here &nbsp;</p>
+                  <CiCirclePlus size={25} />
+                </div>
+              </div>
+            )}
           </div>
-          {showNewJournalOption && (
-            <div className="flex flex-col h-full justify-center items-center">
+        </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <p className="text-2xl pb-2 border-b-2 border-black ">April 2024</p>
+            <div className="w-full  h-full flex flex-col gap-3 px-10 justify-start items-start pt-3 ">
+              {pages.map((page) => {
+                return (
+                  <>
+                    <PageBox
+                      page={page}
+                      setClickedPage={setClickedPage}
+                      setShowPage={setShowPage}
+                    />
+                  </>
+                );
+              })}
+            </div>
+            {showPage && (
+              <PageComponent
+                setShowNewJournalOption={setShowNewJournalOption}
+                page={clickedPage}
+                show={showPage}
+                setShow={setShowPage}
+                setPages={setPages}
+              />
+            )}
+
+            {showPage && (
               <div
                 onClick={() => {
-                  setClickedPage(undefined);
-                  setShowPage(true);
+                  setShowPage(false);
                 }}
-                className="flex justify-around cursor-pointer"
-              >
-                <p>To vent your heart out today, click here &nbsp;</p>
-                <CiCirclePlus size={25} />
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <p className="text-2xl  ">April 2024</p>
-          <div className="w-full border-b-2 border-black h-full flex flex-col gap-3 px-10 justify-start items-start pt-3">
-            {pages.map((page) => {
-              return (
-                <>
-                  <PageBox
-                    page={page}
-                    setClickedPage={setClickedPage}
-                    setShowPage={setShowPage}
-                  />
-                </>
-              );
-            })}
-          </div>
-          {showPage && (
-            <PageComponent
-              setShowNewJournalOption={setShowNewJournalOption}
-              page={clickedPage}
-              show={showPage}
-              setShow={setShowPage}
-              setPages={setPages}
-            />
-          )}
-
-          {showPage && (
-            <div
-              onClick={() => {
-                setShowPage(false);
-              }}
-              className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-backdrop backdrop-blur-sm opacity-40 transition-all ease-in duration-300"
-            ></div>
-          )}
-        </>
-      )}
-    </MainWrapper>
+                className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-backdrop backdrop-blur-sm opacity-40 transition-all ease-in duration-300"
+              ></div>
+            )}
+          </>
+        )}
+      </MainWrapper>
+    </div>
   );
 };
 

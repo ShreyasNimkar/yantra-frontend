@@ -104,6 +104,9 @@ module.exports = {
         // "landing-bg": "url(/landing-background.png)",
         // "events-bg": "url(/events-background.png)",
         "left-pencil-stroke-bg": "url(/svg-icons/LeftPencilStroke.png)",
+        "peopleBox-bg": "url(/peopleBox.png)",
+        "threePeople-bg": "url(/threePeople.svg)",
+        "singlePerson-bg": "url(/singlePerson.svg)",
       },
       keyframes: {
         shrink: {

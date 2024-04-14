@@ -84,7 +84,7 @@ const index = () => {
   }, [window.location.search]);
   return (
     <MainWrapper>
-      <div className="flex font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
+      <div className="flex  font-poppins w-full h-[10vh] flex-row my-5 justify-between items-center">
         <div className="h-full flex items-center text-6xl font-semibold">
           Events
         </div>
@@ -102,7 +102,7 @@ const index = () => {
           </div>
         )}
       </div>
-      <div className="w-full flex flex-col gap-6 ">
+      <div className="w-full flex flex-col gap-6 bg-threePeople-bg bg-no-repeat bg-right-bottom ">
         {loading ? (
           <Loader />
         ) : (
@@ -121,15 +121,17 @@ const index = () => {
               >
                 {events.map((event) => {
                   return (
-                    <EventCard
-                      setClickedOnEditEvent={setClickedOnEditEvent}
-                      setClickedEditEvent={setClickedEditEvent}
-                      setClickedOnDeleteEvent={setClickedOnDeleteEvent}
-                      setClickedDeleteEvent={setClickedDeleteEvent}
-                      key={event.id}
-                      event={event}
-                      size={"[22rem]"}
-                    />
+                    <>
+                      <EventCard
+                        setClickedOnEditEvent={setClickedOnEditEvent}
+                        setClickedEditEvent={setClickedEditEvent}
+                        setClickedOnDeleteEvent={setClickedOnDeleteEvent}
+                        setClickedDeleteEvent={setClickedDeleteEvent}
+                        key={event.id}
+                        event={event}
+                        size={"[22rem]"}
+                      />
+                    </>
                   );
                 })}
               </InfiniteScroll>

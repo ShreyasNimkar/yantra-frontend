@@ -69,7 +69,7 @@ const Home = () => {
 
   return (
     <MainWrapper>
-      <div className="font-poppins">
+      <div className="font-poppins ">
         {clickedOnNewPost && (
           <NewPost setFeed={setFeed} setShow={setClickedOnNewPost} />
         )}
@@ -147,7 +147,7 @@ const Home = () => {
           >
             <Masonry
               breakpointCols={{ default: feed.length == 1 ? 1 : 2, 768: 1 }}
-              className="masonry-grid font-poppins"
+              className="masonry-grid font-poppins  "
               columnClassName="masonry-grid_column"
             >
               {feed.map((item, index) => {

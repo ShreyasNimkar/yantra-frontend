@@ -14,6 +14,7 @@ import nookies from "nookies";
 import configuredAxios from "@/config/axios";
 import { resetConfig } from "@/slices/configSlice";
 import { User } from "@/types";
+import Image from "next/image";
 // import socketService from "@/config/ws";
 import { SERVER_ERROR } from "@/config/errors";
 // import useUserStateFetcher from "@/hooks/user_fetcher";
@@ -99,7 +100,8 @@ const Login = () => {
       <Head>
         <title>Login | Website </title>
       </Head>
-      <div className="h-full flex">
+      {/* bg-peopleBox-bg bg-no-repeat bg-cover */}
+      <div className="h-full flex ">
         <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary py-8 px-8 flex flex-col justify-between items-center">
           <div className="w-full flex justify-between items-center">
             <ReactSVG src="/onboarding_logo.svg" />
@@ -183,7 +185,15 @@ const Login = () => {
             </span>
           </div>
         </div>
-        <div className="w-[55%] max-lg:hidden min-h-screen bg-onboarding bg-cover"></div>
+        <div className="w-[55%] h-[100%]">
+          <Image
+            alt=""
+            height={1000}
+            width={1000}
+            src={"/peopleBox.png"}
+            className="h-full"
+          />
+        </div>
       </div>
     </>
   );

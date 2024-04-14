@@ -37,7 +37,13 @@ const index = () => {
           href={"/group"}
           className="w-[20%] cursor-pointer font-dmSans font-bold tracking-[0.5em] h-full flex justify-around items-center"
         >
-          EPIONE
+          <Image
+            alt="logo"
+            src={"/LogoBlack.svg"}
+            width={1000}
+            height={1000}
+            className="h-[3vh]"
+          />
         </Link>
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
@@ -97,11 +103,11 @@ const index = () => {
           className="w-[20%] h-full flex justify-around items-center"
         >
           <Image
-            src="/vitLogoCircle.png"
+            src="/SmallLogoBlack.svg"
             alt="logo"
             height={10000}
             width={10000}
-            className="w-16 p-3 object-cover cursor-pointer"
+            className="w-12 p-3 object-cover cursor-pointer"
             onClick={() => {
               router.push("/");
             }}

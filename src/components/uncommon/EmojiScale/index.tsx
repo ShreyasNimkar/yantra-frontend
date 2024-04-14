@@ -28,7 +28,7 @@ const SmileysContainer = () => {
           className="cursor-pointer"
           onClick={() => handleClick("smiley")}
           size={32}
-          style={{ color: selectedSmiley === "smiley" ? "blue" : "black" }}
+          style={{ color: selectedSmiley === "smiley" ? "green" : "black" }}
         />
 
         <SmileyMeh
@@ -42,13 +42,13 @@ const SmileysContainer = () => {
           className="cursor-pointer"
           onClick={() => handleClick("sad")}
           size={32}
-          style={{ color: selectedSmiley === "sad" ? "blue" : "black" }}
+          style={{ color: selectedSmiley === "sad" ? "red" : "black" }}
         />
         <SmileyBlank
           className="cursor-pointer"
           onClick={() => handleClick("blank")}
           size={32}
-          style={{ color: selectedSmiley === "blank" ? "blue" : "black" }}
+          style={{ color: selectedSmiley === "blank" ? "orange" : "black" }}
         />
       </div>
     </div>

@@ -1,11 +1,25 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-
+import { resetConfig } from "@/slices/configSlice";
+import Cookies from "js-cookie";
+import { useDispatch, useSelector } from "react-redux";
+import { resetUser, userSelector } from "@/slices/userSlice";
 interface Props {
   modalVisibility: (visible: boolean) => void;
   visible: boolean;
 }
 const NavModal = ({ modalVisibility, visible }: Props) => {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(resetUser());
+    dispatch(resetConfig());
+    // dispatch(resetCurrentOrg());
+    Cookies.remove("id");
+    Cookies.remove("token");
+
+    window.location.replace("/login");
+  };
   // modal logic
   const handleOnClose = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.currentTarget.id === "modalcontainer") modalVisibility(false);
@@ -43,49 +57,49 @@ const NavModal = ({ modalVisibility, visible }: Props) => {
         className="fixed inset-0 bg-black bg-opacity-[0.6] backdrop-blur-sm flex items-center justify-center z-50"
       >
         <div className="h-[70vh] w-[80vw] font-spaceGrotesk lg:w-[30%]  glassMorphism3 rounded-lg text-3xl lg:text-3xl flex justify-around items-center flex-col">
-          <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => handleMenuClick("about-section")}
+          <Link
+            href={"/group"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
-            About Us
-          </div>
+            Group
+          </Link>
 
-          <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => handleMenuClick("timeline-section")}
+          <Link
+            href={"/resources"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
-            Timeline
-          </div>
-          <div
-            className="cursor-pointer w-[80%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => router.push("/hack")}
-          >
-            YANTRA Hackathon
-          </div>
-          <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => handleMenuClick("events-section")}
+            Resources
+          </Link>
+          <Link
+            href={"/events"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
             Events
-          </div>
-          <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => handleMenuClick("patrons-section")}
+          </Link>
+          <Link
+            href={"/home"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
-            Patrons
-          </div>
-          <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => router.push("/team")}
+            Feed
+          </Link>
+          <Link
+            href={"/journal"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
-            Team
-          </div>
+            My Journal
+          </Link>
+          <Link
+            href={"/profile"}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
+          >
+            Profile
+          </Link>
 
           <div
-            className="cursor-pointer w-[60%] h-[10%] text-center flex justify-around items-center hover:text-black text-white"
-            onClick={() => handleMenuClick("contact-section")}
+            onClick={handleLogout}
+            className="w-[100%] text-white cursor-pointer font-dmSans font-bold tracking-[0.5em] h-[10%] flex justify-around items-center"
           >
-            Contact Us
+            Log Out
           </div>
         </div>
       </div>

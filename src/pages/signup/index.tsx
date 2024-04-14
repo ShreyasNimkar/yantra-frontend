@@ -11,6 +11,7 @@ import { setPasswordSetupStatus, setUser } from "@/slices/userSlice";
 import Head from "next/head";
 import { GetServerSidePropsContext } from "next/types";
 import nookies from "nookies";
+import Image from "next/image";
 import configuredAxios from "@/config/axios";
 import { setConfig } from "@/slices/configSlice";
 import { setUnreadNotifications } from "@/slices/feedSlice";
@@ -176,6 +177,15 @@ const SignUp = () => {
         ) : (
           <></>
         )}
+        <div className="w-[55%] max-lg:hidden min-h-screen bg-onboarding object-contain bg-cover">
+          <Image
+            alt=""
+            height={1000}
+            width={1000}
+            src={"/peopleBox.png"}
+            className="w-full object-contain"
+          />
+        </div>
         <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">
           <div className="w-full flex justify-start items-center">
             <ReactSVG src="/onboarding_logo.svg" />
@@ -379,7 +389,6 @@ const SignUp = () => {
             </div>
           </form>
         </div>
-        <div className="w-[55%] max-lg:hidden min-h-screen bg-onboarding bg-cover"></div>
       </div>
     </>
   );

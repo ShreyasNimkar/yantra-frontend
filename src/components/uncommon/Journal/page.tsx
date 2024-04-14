@@ -87,7 +87,7 @@ const Page = ({
         className="w-full bg-transparent text-center border-[1px] rounded-lg p-1 text-xl flex justify-center items-center focus:outline-none h-[10%]"
         value={title}
         onChange={(el) => setTitle(el.target.value)}
-        placeholder="your title here"
+        placeholder="Give a suitable title..."
         style={{ resize: "none" }}
       ></textarea>
 

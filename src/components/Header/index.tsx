@@ -35,17 +35,17 @@ const index = () => {
       >
         <Link
           href={"/group"}
-          className="w-[20%] cursor-pointer font-dmSans font-bold tracking-[0.5em] h-full flex justify-around items-center"
+          className="w-fit cursor-pointer font-dmSans font-bold h-full flex justify-start items-center"
         >
           <Image
             alt="logo"
             src={"/LogoBlack.svg"}
             width={1000}
             height={1000}
-            className="h-[3vh]"
+            className="w-fit h-[3vh]"
           />
         </Link>
-        <div className="w-[60%] h-full flex justify-center gap-10 items-center">
+        <div className="w-[60%] pl-16 h-full flex justify-center gap-10 items-center">
           <Link
             className="cursor-pointer hover-underline-animation font-semibold text-lg"
             href={"/home"}
@@ -65,7 +65,7 @@ const index = () => {
             Resources
           </Link>
         </div>
-        <div className="w-[20%] h-full flex gap-10 items-center justify-end  font-semibold text-lg">
+        <div className="w-[20%] h-full flex gap-4 items-center justify-end  font-semibold text-lg">
           {/* <div
                         className="cursor-pointer hover-underline-animation"
                         onClick={() => handleMenuClick('patrons-section')}

@@ -139,7 +139,7 @@ const Onboarding = () => {
 
     if (res.statusCode === 201) {
       Toaster.stopLoad(toaster, "Group Created", 1);
-      window.location.assign("/group");
+      window.location.assign("/home");
     } else if (res.statusCode == 413) {
       Toaster.stopLoad(toaster, "Image too large", 0);
     } else {

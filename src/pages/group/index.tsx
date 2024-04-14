@@ -101,7 +101,9 @@ const Group = () => {
           </div>
           <div className="">{group.description}</div>
           <div className="pt-8">
-            <p className="text-2xl border-b-2 border-black mb-2">Member List</p>
+            <p className="w-fit text-2xl border-b-2 border-black mb-2 font-semibold">
+              Member List
+            </p>
             <div className="w-full flex flex-col gap-2">
               {group.memberships.map((membership, index) => (
                 <div key={index} className="py-1">
@@ -112,9 +114,13 @@ const Group = () => {
           </div>
         </div>
         <div className="h-full w-[50%]">
-          <div className="pt-8 font-semibold flex justify-start items-center text-2xl">
-            Next Recommendations
+          <div className="w-full flex justify-between items-end">
+            <div className="w-fit pt-8 font-semibold flex justify-start items-center text-2xl border-b-2 border-black">
+              Next Recommendations
+            </div>
+            <div className="text-sm font-medium">(shuffling in 6 days)</div>
           </div>
+
           {groups.map((el) => (
             <GroupCard group={el} />
           ))}
@@ -135,7 +141,7 @@ interface Props {
 
 const GroupCard = ({ group }: Props) => {
   return (
-    <div className="h-[15%] flex justify-between items-center border-b-[1px]">
+    <div className="h-[15%] flex justify-between items-center border-b-[1px] hover:bg-[#0b0b0b07]">
       <div>
         <div className="text-2xl font-medium">{group.title}</div>
         <div>{group.description}</div>

@@ -31,7 +31,7 @@ const DropdownMenuDemo = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="rounded-full font-poppins w-[35px] h-[35px] inline-flex items-center justify-center text-violet11 bg-white border-2  outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black border-black"
+          className="rounded-full font-poppins w-[35px] h-[35px] inline-flex items-center justify-center text-violet11 bg-white border-[1px]  outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black border-black"
           aria-label="Customise options"
         >
           <HamburgerMenuIcon className="cursor-pointer border-black" />

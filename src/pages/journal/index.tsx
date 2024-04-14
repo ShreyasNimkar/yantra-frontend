@@ -94,7 +94,9 @@ const Index = () => {
           <Loader />
         ) : (
           <>
-            <p className="text-2xl pb-2 border-black ">April 2024</p>
+            <p className="w-fit text-2xl pb-2 border-black border-b-2">
+              April 2024
+            </p>
             <div className="w-full  h-full flex flex-col gap-3 justify-start items-start pt-3 ">
               {pages.map((page) => {
                 return (

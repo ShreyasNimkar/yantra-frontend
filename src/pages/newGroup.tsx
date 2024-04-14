@@ -3,7 +3,7 @@ import React from "react";
 const NewGroup = () => {
   return (
     <>
-      <div>absdasd</div>
+      <div></div>
     </>
   );
 };

@@ -31,16 +31,16 @@ const DropdownMenuDemo = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button
-          className="rounded-full w-[35px] h-[35px] inline-flex items-center justify-center text-violet11 bg-white border-2  outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black"
+          className="rounded-full font-poppins w-[35px] h-[35px] inline-flex items-center justify-center text-violet11 bg-white border-2  outline-none hover:bg-violet3 focus:shadow-[0_0_0_2px] focus:shadow-black border-black"
           aria-label="Customise options"
         >
-          <HamburgerMenuIcon className="cursor-pointer" />
+          <HamburgerMenuIcon className="cursor-pointer border-black" />
         </button>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content
-          className="min-w-[220px] cursor-pointer border-2 border-black bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
+          className="min-w-[220px] font-poppins cursor-pointer border-2 border-black bg-white rounded-md p-[5px] shadow-[0px_10px_38px_-10px_rgba(22,_23,_24,_0.35),_0px_10px_20px_-15px_rgba(22,_23,_24,_0.2)] will-change-[opacity,transform] data-[side=top]:animate-slideDownAndFade data-[side=right]:animate-slideLeftAndFade data-[side=bottom]:animate-slideUpAndFade data-[side=left]:animate-slideRightAndFade"
           sideOffset={10}
         >
           {/* <DropdownMenu.Sub>
@@ -76,13 +76,13 @@ const DropdownMenuDemo = () => {
             </DropdownMenu.Portal>
           </DropdownMenu.Sub> */}
 
-          <DropdownMenu.Label className="pl-[25px] p-1 font-semibold text-sm leading-[25px] text-mauve11 cursor-pointer hover:bg-slate-100">
+          <DropdownMenu.Label className="pl-[25px] p-1 font-semibold text-sm leading-[25px] font-poppins text-mauve11 cursor-pointer hover:bg-slate-100">
             <Link href={"/profile"}>Profile</Link>
           </DropdownMenu.Label>
           <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[1px]" />
           <DropdownMenu.Label
             onClick={handleLogout}
-            className="pl-[25px] text-sm p-1 font-semibold hover:bg-slate-100 leading-[25px] text-mauve11 cursor-pointer"
+            className="pl-[25px] font-poppins text-sm p-1 font-semibold hover:bg-slate-100 leading-[25px] text-mauve11 cursor-pointer"
           >
             Logout
           </DropdownMenu.Label>

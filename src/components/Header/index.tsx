@@ -31,11 +31,14 @@ const index = () => {
   return (
     <>
       <div
-        className={`hidden fixed bg-white top-0 lg:flex justify-between items-center w-full h-[4rem] px-16 text-black z-[100] transition-all duration-300 ease-in-out`}
+        className={`hidden fixed border-b-2 border-black bg-white top-0 lg:flex justify-between items-center w-full z-20 h-[4rem] px-16 text-black  transition-all duration-300 ease-in-out`}
       >
-        <div className="w-[20%] h-full flex justify-around items-center">
+        <Link
+          href={"/group"}
+          className="w-[20%] cursor-pointer font-dmSans font-bold tracking-[0.5em] h-full flex justify-around items-center"
+        >
           EPIONE
-        </div>
+        </Link>
         <div className="w-[60%] h-full flex justify-center gap-10 items-center">
           <Link
             className="cursor-pointer hover-underline-animation font-semibold text-lg"

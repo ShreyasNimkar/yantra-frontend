@@ -90,7 +90,7 @@ const NewResourceFile = ({
 
   return (
     <>
-      <div className="w-[60%] absolute bg-white border-2 border-primary_text shadow-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 p-6 rounded-xl flex flex-col gap-4 animate-fade_third">
+      <div className="w-[60%] font-poppins absolute bg-white border-2 border-primary_text shadow-xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 p-6 rounded-xl flex flex-col gap-4 animate-fade_third">
         <h1 className="text-2xl font-bold">Upload File</h1>
         <div className="w-full h-fit flex flex-col gap-4">
           <Input

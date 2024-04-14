@@ -33,7 +33,7 @@ const EventCard = ({
     <Link
       href={`/events/${event.id}`}
       target="_blank"
-      className={`w-${size} rounded-xl border-[1px] hover:shadow-xl transition-ease-out-500`}
+      className={`w-${size} font-poppins rounded-xl border-[1px] hover:shadow-xl transition-ease-out-500`}
     >
       <div className="w-full relative group">
         <div className="flex gap-1 top-2 right-2 absolute bg-white text-gray-500 text-xxs px-2 py-1 rounded-lg">

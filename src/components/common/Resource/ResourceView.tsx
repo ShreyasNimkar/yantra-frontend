@@ -175,7 +175,7 @@ const ResourceView = ({
         {loading ? (
           <Loader />
         ) : (
-          <div className="w-full h-full flex gap-4">
+          <div className="w-full font-poppins h-full flex gap-4">
             <div className="w-1/3 h-full flex flex-col items-center gap-4 border-r-[1px] border-dashed p-2 ">
               {clickedOnEdit ? (
                 <div className="w-full flex justify-end items-center gap-1">

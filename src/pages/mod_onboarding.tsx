@@ -254,7 +254,7 @@ const Onboarding = () => {
                       : step == 5
                       ? "Add a Profile Picture"
                       : step == 6
-                      ? "Links to your Social"
+                      ? "Links to your License"
                       : step == 7
                       ? "Pin Your Spot"
                       : step == 8
@@ -273,7 +273,7 @@ const Onboarding = () => {
                       : step == 5
                       ? ""
                       : step == 6
-                      ? `(${links.length}/3)`
+                      ? `(${links.length}/2)`
                       : step == 7
                       ? `(${location.length}/25)`
                       : step == 8
@@ -478,7 +478,7 @@ const Onboarding = () => {
                     <div className="font-medium text-sm">
                       Almost Done!, Add
                       {/* <span className="underline underline-offset-2">at least one</span>  */}{" "}
-                      links to your socials.
+                      links to your medical license / other valid proof.
                     </div>
                     <Links
                       links={links}
@@ -526,7 +526,7 @@ const Onboarding = () => {
                       <input
                         className="grow bg-transparent text-lg max-md:text-base focus:outline-none"
                         type="text"
-                        maxLength={25}
+                        maxLength={1000}
                         value={groupDescription}
                         onChange={(el) => setGroupDescription(el.target.value)}
                       />

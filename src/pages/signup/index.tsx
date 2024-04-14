@@ -24,7 +24,8 @@ import Info from "@phosphor-icons/react/dist/icons/Info";
 import generateRandomProfilePicture from "@/utils/generate_profile_picture";
 import StrongPassInfo from "@/components/common/strong_pass_info";
 import RegistrationButton from "@/components/buttons/registration_btn";
-
+import { Boxes } from "@/components/common/Background";
+import { cn } from "@/utils/cn";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -160,6 +161,7 @@ const SignUp = () => {
   };
   return (
     <>
+      <Boxes />
       <Head>
         <title>Sign up | Epione</title>
         <meta
@@ -177,23 +179,21 @@ const SignUp = () => {
         ) : (
           <></>
         )}
-        <div className="w-[55%] max-lg:hidden min-h-screen bg-onboarding object-contain bg-cover">
-          <Image
-            alt=""
-            height={1000}
-            width={1000}
-            src={"/peopleBox.png"}
-            className="h-[100vh] object-cover"
-          />
-        </div>
-        <div className="w-[45%] max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">
-          <div className="w-full flex justify-start items-center">
-            <ReactSVG src="/onboarding_logo.svg" />
-          </div>
+
+        <div className="w-[100%]  max-lg:w-full h-full min-h-screen font-primary gap-12 py-8 px-8 flex flex-col justify-around items-center">
           <form
             onSubmit={handleSubmit}
-            className="w-3/5 max-md:w-full flex flex-col items-center gap-6"
+            className="w-[35%] absolute bg-white rounded-lg border-2 border-black px-10 py-10 max-md:w-full flex flex-col items-center gap-6"
           >
+            <div className="">
+              <Image
+                alt="logo"
+                src={"/LogoBlack.svg"}
+                width={1000}
+                height={1000}
+                className="h-[5vh]"
+              />
+            </div>
             <div className="flex flex-col gap-2 text-center">
               <div className="text-2xl font-semibold">
                 Let&apos;s Get Started
@@ -249,10 +249,7 @@ const SignUp = () => {
 
               <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-2 font-medium">
-                  Email{" "}
-                  <div className="text-xs font-normal">
-                    (use your college email only)
-                  </div>
+                  Email <div className="text-xs font-normal"></div>
                 </div>
                 <input
                   name="email"
@@ -358,25 +355,9 @@ const SignUp = () => {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="flex flex-col gap-2">
-                <div className="font-medium">Early Access Token</div>
-                <input
-                  name="token"
-                  value={earlyAccessToken}
-                  onChange={el => setEarlyAccessToken(el.target.value)}
-                  type="password"
-                  className="w-full bg-white focus:outline-none border-2 p-2 rounded-xl text-gray-400"
-                />
-              </div> */}
             </div>
             <div className="w-full p-1 flex flex-col gap-2 items-center">
               <RegistrationButton />
-
-              {/* <div onClick={() => router.push('/early_access')} className="text-gray-400 text-sm cursor-pointer">
-                Don&apos;t have your token yet?{' '}
-                <span className="font-medium underline underline-offset-2">Get It Now</span>
-              </div> */}
 
               <div
                 onClick={() => window.location.assign("/login")}
